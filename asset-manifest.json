@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.34de6062.chunk.css",
+    "main.js": "/static/js/main.a1dd7dfd.chunk.js",
+    "main.js.map": "/static/js/main.a1dd7dfd.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+    "static/js/2.b682dc17.chunk.js": "/static/js/2.b682dc17.chunk.js",
+    "static/js/2.b682dc17.chunk.js.map": "/static/js/2.b682dc17.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.00ed2ddc1c28e01ed26ccf020920a4f1.js": "/precache-manifest.00ed2ddc1c28e01ed26ccf020920a4f1.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.34de6062.chunk.css.map": "/static/css/main.34de6062.chunk.css.map",
+    "static/media/hummustrain.jpg": "/static/media/hummustrain.185fff71.jpg"
+  }
+}
