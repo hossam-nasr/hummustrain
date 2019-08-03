@@ -1,19 +1,20 @@
 import styled from "styled-components";
-import Background from "../../assets/img/hummustrain.jpg";
+import { themeGet } from "@styled-system/theme-get";
 
 export const Container = styled.div`
   display: flex;
   flex-flow: column nowrap;
   min-height: 100vh;
   flex: 1;
-  background-image: url(${Background});
+  background-image: ${themeGet("colors.mainScreenBackground")};
   background-size: cover;
   justify-content: center;
   align-items: center;
 `;
 
 export const Title = styled.div`
-  color: white;
+  color: ${themeGet("colors.title")};
+  font-family: ${themeGet("fonts.title")};
   font-size: 100px;
   text-align: center;
 `;

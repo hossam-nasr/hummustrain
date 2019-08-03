@@ -1,12 +1,12 @@
 import React from "react";
 import { Container, Label, SizeButton, SizeButtonGroup } from "./styles";
-import { cartSizes } from "./constants";
+import theme from "../../../../theme";
 
 const SizePicker = ({ selectedSize, setCartSize }) => (
   <Container>
     <Label>Train Size:</Label>
     <SizeButtonGroup>
-      {cartSizes.map(size => (
+      {theme.carts.sizes.map(size => (
         <SizeButton
           key={size}
           onClick={() => {
