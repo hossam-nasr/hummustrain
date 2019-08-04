@@ -8,10 +8,11 @@ import {
   BoardButton
 } from "./styles";
 import ColorPicker from "./components/ColorPicker";
+import { defaultName, defaultColor } from "../../../../constants";
 
 const AddCartForm = ({ onSubmit }) => {
-  const [name, setName] = useState("");
-  const [color, setColor] = useState("#FFFFFF");
+  const [name, setName] = useState(defaultName);
+  const [color, setColor] = useState(defaultColor);
 
   const onColorChange = color => {
     setColor(color.hex);
