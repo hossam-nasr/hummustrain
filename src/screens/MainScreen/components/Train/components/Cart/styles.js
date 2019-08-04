@@ -22,4 +22,31 @@ export const Name = styled.div`
   text-align: center;
   font-size: ${({ theme, cartSize }) => theme.carts.fontSizes[cartSize] + "px"};
   font-family: ${themeGet("fonts.primary")};
+  max-height: 100%;
+  max-width: 100%;
+  padding: 5%;
+  overflow: auto;
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #bbb;
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: ${({ color }) => color};
+  }
 `;
