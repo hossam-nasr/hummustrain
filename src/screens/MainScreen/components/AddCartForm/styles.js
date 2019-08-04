@@ -23,6 +23,7 @@ export const FormRow = styled.div`
   flex: 1;
   justify-content: flex-start;
   align-items: center;
+  padding-top: 20px;
 `;
 
 export const Label = styled.div`
@@ -45,5 +46,6 @@ export const BoardButton = styled.div`
   border: 2px solid ${themeGet("colors.primary")};
   padding: 5px;
   font-size: 24px;
+  margin-top: 20px;
   cursor: pointer;
 `;
