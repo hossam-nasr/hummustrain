@@ -46,6 +46,7 @@ const AddCartForm = ({ onSubmit, progress, uploading }) => {
         <ColorPicker color={color} onChange={onColorChange} />
       </FormRow>
       <FormRow>
+        <Label>Face picture:</Label>
         <FileUploadInput type="file" onChange={onFileChange} />
         <img src={file && file.webkitRelativePath} />
         <ProgressBar value={progress} max={100} />
