@@ -1,5 +1,5 @@
 import React from "react";
-import { StickManBody, StickManHead } from "../../../../../../../../constants";
+import { StickManBody } from "../../../../../../../../constants";
 import {
   Container,
   StickManBodyImg,
@@ -7,10 +7,10 @@ import {
   StickManHeadImg
 } from "./styles";
 
-const StickMan = ({ cartSize }) => (
+const StickMan = ({ cartSize, facepic }) => (
   <Container cartSize={cartSize}>
     <StickManContainer>
-      <StickManHeadImg src={StickManHead} cartSize={cartSize} />
+      <StickManHeadImg src={facepic} cartSize={cartSize} />
       <StickManBodyImg src={StickManBody} cartSize={cartSize} />
     </StickManContainer>
   </Container>
