@@ -1,6 +1,7 @@
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/storage";
 import { firebaseConfig } from "./constants";
 
 firebase.initializeApp(firebaseConfig);
@@ -8,6 +9,7 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 const collectionRef = db.collection("carts");
 const getQuery = db.collectionGroup("carts").orderBy("timestamp", "asc");
+const getTimestamp = firebase.firestore.Timestamp.now;
 
 export const getCarts = callback => {
   getQuery
@@ -30,15 +32,43 @@ export const setupCartUpdateListener = callback => {
   });
 };
 
-export const addCart = ({ color, name }) => {
-  collectionRef
-    .doc()
-    .set({
-      name,
-      color,
-      timestamp: firebase.firestore.Timestamp.now()
-    })
-    .catch(error => {
-      console.error("Error adding cart:", error.message);
-    });
+export const addCart = ({
+  color,
+  name,
+  file,
+  onUploadProgress,
+  onComplete
+}) => {
+  // create path for file upload
+  const imgPath = "facePics/" + getTimestamp();
+  // upload file
+  const uploadTask = firebase
+    .storage()
+    .ref(imgPath)
+    .put(file);
+
+  // setup listeners for file upload
+  uploadTask.on(
+    "state_changed",
+    onUploadProgress,
+    error => {
+      console.error("Error uploading file", error.message);
+    },
+    // on upload complete
+    () => {
+      // set document in firestore, with img as path
+      collectionRef
+        .doc()
+        .set({
+          name,
+          color,
+          timestamp: getTimestamp(),
+          facepic: imgPath
+        })
+        .then(onComplete)
+        .catch(error => {
+          console.error("Error adding cart:", error.message);
+        });
+    }
+  );
 };
