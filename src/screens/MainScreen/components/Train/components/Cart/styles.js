@@ -56,8 +56,3 @@ export const Name = styled.div`
     background: ${({ color }) => color};
   }
 `;
-
-export const StickMan = styled.img`
-  height: ${({ cartSize, theme }) =>
-    theme.carts.dimensions[cartSize].height + "px"};
-`;
