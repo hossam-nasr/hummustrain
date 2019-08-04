@@ -10,19 +10,11 @@ import { CustomPicker, BlockPicker } from "react-color";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 
-const ColorPicker = ({ hex, rgb, hsl, onChange }) => {
-  const [pickerVisible, setPickerVisible] = useState(false);
+const ColorPicker = ({ hex, onChange }) => {
   const [color, setColor] = useState(hex);
 
-  const handleClick = () => {
-    setPickerVisible(!pickerVisible);
-  };
-
-  const handleClose = () => {
-    setPickerVisible(false);
-  };
-
   const handleChange = color => {
+    onChange(color.hex);
     setColor(color.hex);
   };
 

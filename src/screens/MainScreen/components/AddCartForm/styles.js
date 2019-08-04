@@ -40,7 +40,10 @@ export const NameInput = styled.input`
 `;
 
 export const BoardButton = styled.div`
-  align-self: flex-end;
-  height: 100px;
-  width: 100px;
+  font-family: ${themeGet("fonts.primary")};
+  color: ${themeGet("colors.primary")};
+  border: 2px solid ${themeGet("colors.primary")};
+  padding: 5px;
+  font-size: 24px;
+  cursor: pointer;
 `;

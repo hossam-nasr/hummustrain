@@ -31,6 +31,7 @@ const MainScreen = () => {
 
   const onAddCartFormSubmit = ({ name, color }) => {
     addCart({ name, color });
+    hideModal();
   };
 
   useEffect(() => {
