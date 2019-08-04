@@ -5,14 +5,17 @@ import {
   FormRow,
   Label,
   NameInput,
-  BoardButton
+  BoardButton,
+  ProgressBar,
+  FileUploadInput
 } from "./styles";
 import ColorPicker from "./components/ColorPicker";
 import { defaultName, defaultColor } from "../../../../constants";
 
-const AddCartForm = ({ onSubmit }) => {
+const AddCartForm = ({ onSubmit, progress, uploading }) => {
   const [name, setName] = useState(defaultName);
   const [color, setColor] = useState(defaultColor);
+  const [file, setFile] = useState(null);
 
   const onColorChange = color => {
     setColor(color.hex);
@@ -20,6 +23,10 @@ const AddCartForm = ({ onSubmit }) => {
 
   const onNameChange = event => {
     setName(event.target.value);
+  };
+
+  const onFileChange = event => {
+    setFile(event.target.files[0]);
   };
 
   return (
@@ -38,9 +45,15 @@ const AddCartForm = ({ onSubmit }) => {
         <Label>Cart color:</Label>
         <ColorPicker color={color} onChange={onColorChange} />
       </FormRow>
+      <FormRow>
+        <FileUploadInput type="file" onChange={onFileChange} />
+        <img src={file && file.webkitRelativePath} />
+        <ProgressBar value={progress} max={100} />
+      </FormRow>
+
       <BoardButton
         onClick={() => {
-          onSubmit({ name, color });
+          !uploading && onSubmit({ name, color, file });
         }}
       >
         Board the Hummus train!

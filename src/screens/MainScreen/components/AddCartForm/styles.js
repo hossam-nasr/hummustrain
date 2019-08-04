@@ -49,3 +49,14 @@ export const BoardButton = styled.div`
   margin-top: 20px;
   cursor: pointer;
 `;
+
+export const FileUploadInput = styled.input`
+  width: 25%;
+  padding-right: 10px;
+`;
+
+export const ProgressBar = styled.progress`
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 1;
+`;
