@@ -5,6 +5,7 @@
   "private": true,
   "dependencies": {
     "@styled-system/theme-get": "^5.0.18",
+    "firebase": "^6.3.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1",
