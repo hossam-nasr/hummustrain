@@ -3,7 +3,7 @@ import { Container, Title, ButtonContainer } from "./styles";
 import Train from "./components/Train";
 import AddCartButton from "./components/AddCartButton";
 import SizePicker from "./components/SizePicker";
-import { addCart, onCartsUpdate } from "../../helpers";
+import { addCart, setupCartUpdateListener } from "../../helpers";
 
 const MainScreen = () => {
   const [carts, setCarts] = useState([]);
@@ -14,7 +14,7 @@ const MainScreen = () => {
   };
 
   useEffect(() => {
-    onCartsUpdate(carts => {
+    setupCartUpdateListener(carts => {
       setCarts(carts);
     });
   }, []);
