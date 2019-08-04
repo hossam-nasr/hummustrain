@@ -7,7 +7,8 @@ firebase.initializeApp(firebaseConfig);
 
 const db = firebase.firestore();
 const collectionRef = db.collection("carts");
-const getQuery = db.collectionGroup("carts");
+const getQuery = db.collectionGroup("carts").orderBy("timestamp", "asc");
+console.log("getQuery", getQuery);
 
 export const getCarts = callback => {
   getQuery
@@ -19,12 +20,16 @@ export const getCarts = callback => {
       callback(respJson);
     })
     .catch(error => {
-      console.error("Error retrieving carts from database: ", error.message);
+      console.error("Error retrieving carts from database: ", error);
     });
 };
 
+getCarts(resp => {
+  console.log(resp);
+});
+
 export const onCartsUpdate = callback => {
-  collectionRef.onSnapshot(response => {
+  getQuery.onSnapshot(response => {
     const respCarts = response.docs.map(doc => doc && doc.exists && doc.data());
     callback(respCarts);
   });
@@ -35,7 +40,8 @@ export const addCart = ({ color, name }) => {
     .doc()
     .set({
       name,
-      color
+      color,
+      timestamp: firebase.firestore.Timestamp.now()
     })
     .catch(error => {
       console.error("Error adding cart:", error.message);
