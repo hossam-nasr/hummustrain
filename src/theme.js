@@ -9,7 +9,8 @@ const theme = {
     sizeButtonSelected: "dodgerBlue",
     sizeButtonText: "black",
     cartName: "black",
-    title: "white"
+    title: "white",
+    primary: "black"
   },
   fonts: {
     primary: "sans-serif",
