@@ -5,12 +5,8 @@ import { Container, Title, ButtonContainer } from "./styles";
 import Train from "./components/Train";
 import AddCartButton from "./components/AddCartButton";
 import SizePicker from "./components/SizePicker";
-<<<<<<< HEAD
 import { addCart, setupCartUpdateListener } from "../../helpers";
-=======
 import AddCartForm from "./components/AddCartForm";
-import { addCart, onCartsUpdate } from "../../helpers";
->>>>>>> 2d792f7... added form
 
 const MainScreen = () => {
   const [carts, setCarts] = useState([]);
