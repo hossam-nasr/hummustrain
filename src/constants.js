@@ -1,5 +1,7 @@
 import AllAboardTrain from "./assets/audio/AllAboardTheHummusTrain.mp3";
 import stickManPng from "./assets/img/stickman-thick.png";
+import stickManBodyPng from "./assets/img/stickman-thick-headless.png";
+import stickManHeadPng from "./assets/img/stickman-thick-head.png";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCQhBv01Inz9eX7bC52TJnO3KyZ0odg6b4",
@@ -28,3 +30,5 @@ export const presetColorOptions = [
 
 export const loadAudio = AllAboardTrain;
 export const StickManImg = stickManPng;
+export const StickManBody = stickManBodyPng;
+export const StickManHead = stickManHeadPng;
