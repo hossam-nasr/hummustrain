@@ -1,5 +1,5 @@
 import AllAboardTrain from "./assets/audio/AllAboardTheHummusTrain.mp3";
-import stickManPng from "./assets/img/stickman.png";
+import stickManPng from "./assets/img/stickman-thick.png";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCQhBv01Inz9eX7bC52TJnO3KyZ0odg6b4",
