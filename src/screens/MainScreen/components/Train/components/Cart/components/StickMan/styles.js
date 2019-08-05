@@ -15,13 +15,13 @@ export const StickManContainer = styled.div`
 
 export const StickManBodyImg = styled.img`
   height: ${({ cartSize, theme }) =>
-    theme.carts.dimensions[cartSize].height + "px"};
+    theme.carts.dimensions[cartSize].height * 0.8 + "px"};
 `;
 
 export const StickManHeadImg = styled.img`
   height: ${({ cartSize, theme }) =>
-    theme.carts.dimensions[cartSize].height * 0.3 + "px"};
+    theme.carts.dimensions[cartSize].height * 0.6 + "px"};
   border-radius: ${({ cartSize, theme }) =>
-    (theme.carts.dimensions[cartSize].height * 0.3) / 2 + "px"};
+    (theme.carts.dimensions[cartSize].height * 0.6) / 2 + "px"};
   overflow: hidden;
 `;
