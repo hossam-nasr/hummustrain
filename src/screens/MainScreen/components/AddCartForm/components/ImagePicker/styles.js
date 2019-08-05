@@ -48,10 +48,20 @@ export const ModalBody = styled.div`
   flex: 1;
 `;
 
-export const ZoomContainer = styled.div`
+export const RowContainer = styled.div`
   display: flex;
   flex-flow: row nowrap;
   width: 100%;
+  padding: 20px;
+`;
+
+export const PickerContainer = styled(RowContainer)`
+  justify-content: center;
+  align-items: center;
+`;
+
+export const RotateButton = styled.div`
+  cursor: pointer;
   padding: 20px;
 `;
 
@@ -60,10 +70,11 @@ export const ZoomLabel = styled(Label)`
   font-size: 16px;
 `;
 
-export const ZoomText = styled.input`
+export const TextInput = styled.input`
   width: 50px;
   text-align: center;
   margin-left: 10px;
+  margin-right: 10px;
 `;
 
 export const ZoomSliderContainer = styled.div`

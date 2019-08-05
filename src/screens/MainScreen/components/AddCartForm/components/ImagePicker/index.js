@@ -6,17 +6,21 @@ import {
   FileUploadInput,
   ModalTitle,
   ModalBody,
-  ZoomContainer,
+  RowContainer,
+  PickerContainer,
   ZoomLabel,
-  ZoomText,
+  TextInput,
   ZoomSliderContainer,
   PreviewContainer,
-  ButtonContainer
+  ButtonContainer,
+  RotateButton
 } from "./styles";
 import AvatarEditor from "react-avatar-editor";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { Slider } from "@material-ui/core";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUndo, faRedo } from "@fortawesome/free-solid-svg-icons";
 import StickMan from "../../../../../../components/StickMan";
 
 const ImagePicker = ({ onSave }) => {
@@ -25,6 +29,7 @@ const ImagePicker = ({ onSave }) => {
   const [imgCroppedBlob, setImgCroppedBlob] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [scale, setScale] = useState(1);
+  const [rotation, setRotation] = useState(0);
   const editor = useRef(null);
 
   const onFileChange = event => {
@@ -62,17 +67,33 @@ const ImagePicker = ({ onSave }) => {
     hideModal();
   };
 
-  const onZoomTextChange = event => {
-    const scale = parseFloat(event.target.value);
-    if (isNaN(scale)) {
-      setScale(0);
-    } else if (scale < 0) {
-      setScale(0);
-    } else if (scale > 10) {
-      setScale(10);
+  const onTextChange = (min, max, event, setter) => {
+    const val = parseFloat(event.target.value);
+    if (isNaN(val)) {
+      setter(min);
+    } else if (val < min) {
+      setter(min);
+    } else if (val > max) {
+      setter(max);
     } else {
-      setScale(scale);
+      setter(val);
     }
+  };
+
+  const onZoomTextChange = event => {
+    onTextChange(0, 10, event, setScale);
+  };
+
+  const onRotationTextChange = event => {
+    onTextChange(0, 360, event, setRotation);
+  };
+
+  const rotateRight = () => {
+    setRotation((rotation + 90) % 360);
+  };
+
+  const rotateLeft = () => {
+    setRotation((rotation + 270) % 360);
   };
 
   const onModifyButtonClick = () => {
@@ -102,17 +123,47 @@ const ImagePicker = ({ onSave }) => {
           <ModalTitle>Crop your image to fit your face!</ModalTitle>
         </Modal.Header>
         <ModalBody>
-          <AvatarEditor
-            ref={editor}
-            image={file}
-            width={200}
-            height={267}
-            borderRadius={134}
-            border={50}
-            color={[255, 255, 255, 0.7]}
-            scale={scale}
-          />
-          <ZoomContainer>
+          <PickerContainer>
+            <RotateButton onClick={rotateRight}>
+              <FontAwesomeIcon icon={faRedo} />
+            </RotateButton>
+            <AvatarEditor
+              ref={editor}
+              image={file}
+              width={
+                rotation === 0 || rotation === 180 || rotation === 360
+                  ? 200
+                  : 267
+              }
+              height={
+                rotation === 0 || rotation === 180 || rotation === 360
+                  ? 267
+                  : 200
+              }
+              borderRadius={134}
+              border={50}
+              color={[255, 255, 255, 0.7]}
+              scale={scale}
+              rotate={rotation}
+            />
+            <RotateButton onClick={rotateLeft}>
+              <FontAwesomeIcon icon={faUndo} />
+            </RotateButton>
+          </PickerContainer>
+          <RowContainer>
+            <Label>Rotation degree:</Label>
+            <TextInput
+              type="number"
+              min={0}
+              max={360}
+              step={1}
+              placeholder={0}
+              value={rotation === 0 ? "" : rotation}
+              onChange={onRotationTextChange}
+            />
+            <Label>°</Label>
+          </RowContainer>
+          <RowContainer>
             <ZoomLabel>Zoom level:</ZoomLabel>
             <ZoomSliderContainer>
               <Slider
@@ -125,15 +176,15 @@ const ImagePicker = ({ onSave }) => {
                 }}
               />
             </ZoomSliderContainer>
-            <ZoomText
+            <TextInput
               type="number"
               min={1}
               max={10}
               step={0.1}
-              value={scale}
+              value={scale === 0 ? "" : scale}
               onChange={onZoomTextChange}
             />
-          </ZoomContainer>
+          </RowContainer>
         </ModalBody>
         <Modal.Footer>
           <Button variant="danger" onClick={onEditorCancel}>
