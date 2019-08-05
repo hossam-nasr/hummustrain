@@ -6,10 +6,10 @@ import {
   Label,
   NameInput,
   BoardButton,
-  ProgressBar,
-  FileUploadInput
+  ProgressBar
 } from "./styles";
 import ColorPicker from "./components/ColorPicker";
+import ImagePicker from "./components/ImagePicker";
 import { defaultName, defaultColor } from "../../../../constants";
 
 const AddCartForm = ({ onSubmit, progress, uploading }) => {
@@ -25,8 +25,8 @@ const AddCartForm = ({ onSubmit, progress, uploading }) => {
     setName(event.target.value);
   };
 
-  const onFileChange = event => {
-    setFile(event.target.files[0]);
+  const onImageSave = blob => {
+    setFile(blob);
   };
 
   return (
@@ -45,13 +45,10 @@ const AddCartForm = ({ onSubmit, progress, uploading }) => {
         <Label>Cart color:</Label>
         <ColorPicker color={color} onChange={onColorChange} />
       </FormRow>
+      <ImagePicker onSave={onImageSave} />
       <FormRow>
-        <Label>Face picture:</Label>
-        <FileUploadInput type="file" onChange={onFileChange} />
-        <img src={file && file.webkitRelativePath} />
         <ProgressBar value={progress} max={100} />
       </FormRow>
-
       <BoardButton
         onClick={() => {
           !uploading && onSubmit({ name, color, file });
