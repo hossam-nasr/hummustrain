@@ -29,6 +29,12 @@ const AddCartForm = ({ onSubmit, progress, uploading }) => {
     setFile(blob);
   };
 
+  const submitForm = () => {
+    if (!uploading) {
+      onSubmit({ name, color, file });
+    }
+  };
+
   return (
     <Container>
       <Title>Board the Hummus Train!</Title>
@@ -49,13 +55,7 @@ const AddCartForm = ({ onSubmit, progress, uploading }) => {
       <FormRow>
         <ProgressBar value={progress} max={100} />
       </FormRow>
-      <BoardButton
-        onClick={() => {
-          !uploading && onSubmit({ name, color, file });
-        }}
-      >
-        Board the Hummus train!
-      </BoardButton>
+      <BoardButton onClick={submitForm}>Board the Hummus train!</BoardButton>
     </Container>
   );
 };

@@ -77,11 +77,14 @@ const MainScreen = () => {
         visible={modalVisible}
         onClose={hideModal}
       >
-        <AddCartForm
-          onSubmit={onAddCartFormSubmit}
-          progress={formUploadProgress}
-          uploading={uploading}
-        />
+        {// manually unmount the form to reset state on close
+        modalVisible && (
+          <AddCartForm
+            onSubmit={onAddCartFormSubmit}
+            progress={formUploadProgress}
+            uploading={uploading}
+          />
+        )}
       </Rodal>
     </Container>
   );
