@@ -7,3 +7,6 @@ export const firebaseConfig = {
   messagingSenderId: "965342327738",
   appId: "1:965342327738:web:4cfe7db949e93693"
 };
+
+export const defaultColor = "#2ccce4";
+export const defaultName = "Guest";
