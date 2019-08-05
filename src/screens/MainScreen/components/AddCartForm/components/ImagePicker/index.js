@@ -106,8 +106,8 @@ const ImagePicker = ({ onSave }) => {
             ref={editor}
             image={file}
             width={200}
-            height={200}
-            borderRadius={100}
+            height={267}
+            borderRadius={134}
             border={50}
             color={[255, 255, 255, 0.7]}
             scale={scale}

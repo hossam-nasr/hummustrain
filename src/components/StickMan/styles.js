@@ -21,7 +21,9 @@ export const StickManBodyImg = styled.img`
 export const StickManHeadImg = styled.img`
   height: ${({ cartSize, theme }) =>
     theme.carts.dimensions[cartSize].height * 0.6 + "px"};
-  border-radius: ${({ cartSize, theme }) =>
-    (theme.carts.dimensions[cartSize].height * 0.6) / 2 + "px"};
+  width: ${({ cartSize, theme }) =>
+    theme.carts.dimensions[cartSize].height * 0.45 + "px"};
+  border-radius: 50%;
+  object-fit: cover;
   overflow: hidden;
 `;
