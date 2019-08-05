@@ -17,7 +17,7 @@ import AvatarEditor from "react-avatar-editor";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import { Slider } from "@material-ui/core";
-import StickManPreview from "./components/StickManPreview";
+import StickMan from "../../../../../../components/StickMan";
 
 const ImagePicker = ({ onSave }) => {
   const [file, setFile] = useState(null);
@@ -87,7 +87,7 @@ const ImagePicker = ({ onSave }) => {
       </FormRow>
       <PreviewContainer>
         <>
-          {imgCroppedSrc && <StickManPreview headSrc={imgCroppedSrc} />}
+          {imgCroppedSrc && <StickMan cartSize="L" facepic={imgCroppedSrc} />}
           {imgCroppedBlob && (
             <ButtonContainer>
               <Button onClick={onModifyButtonClick} variant="info">

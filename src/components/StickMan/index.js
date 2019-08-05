@@ -1,5 +1,5 @@
 import React from "react";
-import { StickManBody } from "../../../../../../../../constants";
+import { StickManBody } from "../../constants";
 import {
   Container,
   StickManBodyImg,
