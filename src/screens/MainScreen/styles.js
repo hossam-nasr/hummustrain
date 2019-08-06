@@ -8,6 +8,7 @@ export const Container = styled.div`
   flex: 1;
   background-image: ${themeGet("colors.mainScreenBackground")};
   background-size: cover;
+  background-attachment: fixed;
   justify-content: center;
   align-items: center;
 `;
