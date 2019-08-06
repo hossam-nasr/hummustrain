@@ -5,11 +5,8 @@ import { Container, Title, ButtonContainer } from "./styles";
 import Train from "./components/Train";
 import AddCartButton from "./components/AddCartButton";
 import SizePicker from "./components/SizePicker";
-import AddCartForm from "./components/AddCartForm";
 import { addCart, setupCartUpdateListener } from "../../helpers";
-import { loadAudio } from "../../constants";
-
-const audio = new Audio(loadAudio);
+import AddCartForm from "./components/AddCartForm";
 
 const MainScreen = () => {
   const [carts, setCarts] = useState([]);
@@ -25,7 +22,6 @@ const MainScreen = () => {
   };
 
   const onButtonPress = () => {
-    audio.play();
     showModal();
   };
 
@@ -35,7 +31,6 @@ const MainScreen = () => {
   };
 
   useEffect(() => {
-    // get carts
     setupCartUpdateListener(carts => {
       setCarts(carts);
     });

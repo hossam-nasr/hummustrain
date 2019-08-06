@@ -1,5 +1,3 @@
-import AllAboardTrain from "./assets/audio/AllAboardTheHummusTrain.mp3";
-
 export const firebaseConfig = {
   apiKey: "AIzaSyCQhBv01Inz9eX7bC52TJnO3KyZ0odg6b4",
   authDomain: "hummustrain.firebaseapp.com",
@@ -12,5 +10,3 @@ export const firebaseConfig = {
 
 export const defaultColor = "#2ccce4";
 export const defaultName = "Guest";
-
-export const loadAudio = AllAboardTrain;
