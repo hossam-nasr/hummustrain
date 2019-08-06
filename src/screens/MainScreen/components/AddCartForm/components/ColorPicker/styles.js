@@ -38,10 +38,19 @@ export const Arrow = styled.i`
 export const ColorText = styled.div`
   font-family: ${themeGet("fonts.primary")};
   font-size: 12px;
-  color: gray;
+  color: ${({ color }) => color};
   margin-left: 5px;
 `;
 
 export const PickerContainer = styled.div`
   position: absolute;
+`;
+
+export const PopoverFooter = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  padding-top: 5px;
 `;

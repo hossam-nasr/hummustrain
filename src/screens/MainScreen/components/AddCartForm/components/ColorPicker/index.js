@@ -1,42 +1,97 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   Container,
   ColorCircleContainer,
   ColorCircle,
   ColorText,
-  Arrow
+  Arrow,
+  PopoverFooter
 } from "./styles";
-import { CustomPicker, BlockPicker } from "react-color";
+import { CustomPicker, BlockPicker, SketchPicker } from "react-color";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
+import Button from "react-bootstrap/Button";
 
 const ColorPicker = ({ hex, onChange }) => {
   const [color, setColor] = useState(hex);
+  const [isDetailed, setIsDetailed] = useState(false);
+  const overlayRef = useRef(null);
 
   const handleChange = color => {
     onChange(color.hex);
     setColor(color.hex);
   };
 
+  const showDetails = () => {
+    setIsDetailed(true);
+  };
+
+  const hideDetails = () => {
+    setIsDetailed(false);
+  };
+
+  const hidePopover = () => {
+    if (overlayRef.current) {
+      overlayRef.current.hide();
+    }
+  };
+
+  const onDoneClick = () => {
+    hidePopover();
+    hideDetails();
+  };
+
+  const onPopoverHide = () => {};
+
+  const sketchPicker = (
+    <SketchPicker
+      color={color}
+      onChange={handleChange}
+      disableAlpha
+      presetColors={[]}
+    />
+  );
+
+  const blockPicker = (
+    <BlockPicker triangle="hide" color={color} onChange={handleChange} />
+  );
+
   const picker = (
-    <Popover>
+    <Popover id="color-popover">
       <Popover.Title>Pick a color!</Popover.Title>
-      <BlockPicker triangle="hide" color={color} onChange={handleChange} />
+      <Popover.Content>
+        {isDetailed ? sketchPicker : blockPicker}
+      </Popover.Content>
+      <PopoverFooter>
+        {isDetailed ? (
+          <Button size="sm" variant="outline-info" onClick={hideDetails}>
+            Go Back
+          </Button>
+        ) : (
+          <Button size="sm" variant="outline-info" onClick={showDetails}>
+            More colors
+          </Button>
+        )}
+        <Button size="sm" variant="success" onClick={onDoneClick}>
+          Done
+        </Button>
+      </PopoverFooter>
     </Popover>
   );
 
   return (
     <Container>
       <OverlayTrigger
+        ref={overlayRef}
         trigger="click"
         placement="bottom"
         overlay={picker}
-        onHide={() => {}}
+        onHide={onPopoverHide}
         rootClose
       >
         <ColorCircleContainer>
           <ColorCircle color={color} />
-          <ColorText>{color}</ColorText>
+          <ColorText color={color}>{color}</ColorText>
           <Arrow />
         </ColorCircleContainer>
       </OverlayTrigger>

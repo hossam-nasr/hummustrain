@@ -36,7 +36,7 @@ const AddCartForm = ({ onSubmit }) => {
       </FormRow>
       <FormRow>
         <Label>Cart color:</Label>
-        <ColorPicker hex={color} onChange={onColorChange} />
+        <ColorPicker color={color} onChange={onColorChange} />
       </FormRow>
       <BoardButton
         onClick={() => {
