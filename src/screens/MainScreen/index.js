@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Rodal from "rodal";
 import "rodal/lib/rodal.css";
-import { Container, Title, ButtonContainer } from "./styles";
+import { Container, Title, ButtonContainer, TrainContainer } from "./styles";
 import Train from "./components/Train";
 import AddCartButton from "./components/AddCartButton";
 import SizePicker from "./components/SizePicker";
@@ -22,6 +22,8 @@ const MainScreen = () => {
 
   const hideModal = () => {
     setModalVisible(false);
+    audio.pause();
+    audio.currentTime = 0;
   };
 
   const onButtonPress = () => {
@@ -45,7 +47,9 @@ const MainScreen = () => {
     <Container>
       <Title>ALL ABOARD THE HUMMUS TRAIN</Title>
       <SizePicker setCartSize={setCartSize} selectedSize={cartSize} />
-      <Train carts={carts} cartSize={cartSize} />
+      <TrainContainer>
+        <Train carts={carts} cartSize={cartSize} />
+      </TrainContainer>
       <ButtonContainer>
         <AddCartButton onClick={onButtonPress} />
       </ButtonContainer>
