@@ -19,7 +19,7 @@ const ColorPicker = ({ hex, onChange }) => {
   };
 
   const picker = (
-    <Popover>
+    <Popover id="color-popover">
       <Popover.Title>Pick a color!</Popover.Title>
       <BlockPicker triangle="hide" color={color} onChange={handleChange} />
     </Popover>
@@ -36,7 +36,7 @@ const ColorPicker = ({ hex, onChange }) => {
       >
         <ColorCircleContainer>
           <ColorCircle color={color} />
-          <ColorText>{color}</ColorText>
+          <ColorText color={color}>{color}</ColorText>
           <Arrow />
         </ColorCircleContainer>
       </OverlayTrigger>

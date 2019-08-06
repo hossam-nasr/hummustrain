@@ -38,7 +38,7 @@ export const Arrow = styled.i`
 export const ColorText = styled.div`
   font-family: ${themeGet("fonts.primary")};
   font-size: 12px;
-  color: gray;
+  color: ${({ color }) => color};
   margin-left: 5px;
 `;
 
