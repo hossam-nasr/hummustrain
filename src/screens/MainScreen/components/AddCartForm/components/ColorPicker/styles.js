@@ -45,3 +45,12 @@ export const ColorText = styled.div`
 export const PickerContainer = styled.div`
   position: absolute;
 `;
+
+export const PopoverFooter = styled.div`
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  padding-top: 5px;
+`;
