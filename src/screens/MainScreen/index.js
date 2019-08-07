@@ -5,7 +5,6 @@ import { Container, Title, ButtonContainer } from "./styles";
 import Train from "./components/Train";
 import AddCartButton from "./components/AddCartButton";
 import SizePicker from "./components/SizePicker";
-import { addCart, setupCartUpdateListener, uploadFile } from "../../helpers";
 import AddCartForm from "./components/AddCartForm";
 import { addCart, setupCartUpdateListener } from "../../helpers";
 import { loadAudio } from "../../constants";
