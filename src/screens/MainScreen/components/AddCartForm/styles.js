@@ -49,3 +49,9 @@ export const BoardButton = styled.div`
   margin-top: 20px;
   cursor: pointer;
 `;
+
+export const ProgressBar = styled.progress`
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 1;
+`;

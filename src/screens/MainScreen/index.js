@@ -5,6 +5,7 @@ import { Container, Title, ButtonContainer } from "./styles";
 import Train from "./components/Train";
 import AddCartButton from "./components/AddCartButton";
 import SizePicker from "./components/SizePicker";
+import { addCart, setupCartUpdateListener, uploadFile } from "../../helpers";
 import AddCartForm from "./components/AddCartForm";
 import { addCart, setupCartUpdateListener } from "../../helpers";
 import { loadAudio } from "../../constants";
@@ -15,6 +16,8 @@ const MainScreen = () => {
   const [carts, setCarts] = useState([]);
   const [cartSize, setCartSize] = useState("M");
   const [modalVisible, setModalVisible] = useState(false);
+  const [formUploadProgress, setFormUploadProgress] = useState(0);
+  const [uploading, setUploading] = useState(false);
 
   const showModal = () => {
     setModalVisible(true);
@@ -29,9 +32,26 @@ const MainScreen = () => {
     showModal();
   };
 
-  const onAddCartFormSubmit = ({ name, color }) => {
-    addCart({ name, color });
+  const onFormProgress = snapshot => {
+    const percentageComplete =
+      (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    setFormUploadProgress(percentageComplete);
+  };
+
+  const onFormComplete = () => {
     hideModal();
+    setUploading(false);
+  };
+
+  const onAddCartFormSubmit = ({ name, color, file }) => {
+    setUploading(true);
+    addCart({
+      name,
+      color,
+      file,
+      onUploadProgress: onFormProgress,
+      onComplete: onFormComplete
+    });
   };
 
   useEffect(() => {
@@ -50,14 +70,21 @@ const MainScreen = () => {
       </ButtonContainer>
       <Rodal
         width={50}
-        height={50}
+        height={80}
         measure="%"
         closeOnEsc
         showMask
         visible={modalVisible}
         onClose={hideModal}
       >
-        <AddCartForm onSubmit={onAddCartFormSubmit} />
+        {// manually unmount the form to reset state on close
+        modalVisible && (
+          <AddCartForm
+            onSubmit={onAddCartFormSubmit}
+            progress={formUploadProgress}
+            uploading={uploading}
+          />
+        )}
       </Rodal>
     </Container>
   );

@@ -6,8 +6,14 @@ import Cart from "./components/Cart";
 const Train = ({ carts, cartSize }) => (
   <Container>
     <HeadImg cartSize={cartSize} src={TrainHeadGif} />
-    {carts.map(({ name, color, timestamp }) => (
-      <Cart key={timestamp} name={name} color={color} cartSize={cartSize} />
+    {carts.map(({ name, color, timestamp, facepic }) => (
+      <Cart
+        key={timestamp}
+        name={name}
+        color={color}
+        facepic={facepic}
+        cartSize={cartSize}
+      />
     ))}
   </Container>
 );
