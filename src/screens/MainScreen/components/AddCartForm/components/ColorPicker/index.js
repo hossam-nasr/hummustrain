@@ -7,6 +7,7 @@ import {
   Arrow,
   PopoverFooter
 } from "./styles";
+import { presetColorOptions } from "../../../../../../constants";
 import { CustomPicker, BlockPicker, SketchPicker } from "react-color";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
@@ -53,7 +54,12 @@ const ColorPicker = ({ hex, onChange }) => {
   );
 
   const blockPicker = (
-    <BlockPicker triangle="hide" color={color} onChange={handleChange} />
+    <BlockPicker
+      colors={presetColorOptions}
+      triangle="hide"
+      color={color}
+      onChange={handleChange}
+    />
   );
 
   const picker = (
