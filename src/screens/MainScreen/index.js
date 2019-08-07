@@ -25,6 +25,8 @@ const MainScreen = () => {
 
   const hideModal = () => {
     setModalVisible(false);
+    audio.pause();
+    audio.currentTime = 0;
   };
 
   const onButtonPress = () => {

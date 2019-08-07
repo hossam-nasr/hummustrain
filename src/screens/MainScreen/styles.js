@@ -8,6 +8,7 @@ export const Container = styled.div`
   flex: 1;
   background-image: ${themeGet("colors.mainScreenBackground")};
   background-size: cover;
+  background-attachment: fixed;
   justify-content: center;
   align-items: center;
 `;
@@ -21,4 +22,5 @@ export const Title = styled.div`
 
 export const ButtonContainer = styled.div`
   margin-top: 20px;
+  margin-bottom: 20px;
 `;
