@@ -39,9 +39,7 @@ export const getCarts = callback => {
   getQuery
     .get()
     .then(response => {
-      extractJsonFromResponse(response).then(respCarts => {
-        callback(respCarts);
-      });
+      extractJsonFromResponse(response).then(callback);
     })
     .catch(error => {
       console.error("Error retrieving carts from database: ", error);
