@@ -49,9 +49,7 @@ export const getCarts = callback => {
 export const setupCartUpdateListener = callback => {
   getQuery.onSnapshot(response => {
     extractJsonFromResponse(response)
-      .then(respCarts => {
-        callback(respCarts);
-      })
+      .then(callback)
       .catch(error => {
         console.error("Error loading up carts: ", error.message);
       });
