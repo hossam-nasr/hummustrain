@@ -13,7 +13,7 @@ const getQuery = db.collectionGroup("carts").orderBy("timestamp", "asc");
 const getTimestamp = firebase.firestore.Timestamp.now;
 
 const extractJsonFromResponse = async response =>
-  await Promise.all(response.docs.map(extractDocData));
+  Promise.all(response.docs.map(extractDocData));
 
 const extractDocData = async doc => {
   const docJson = doc && doc.exists && doc.data();
