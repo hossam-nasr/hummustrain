@@ -11,4 +11,5 @@ export const HeadImg = styled.img`
   user-select: none;
   max-height: ${({ cartSize, theme }) =>
     `${2.3 * theme.carts.dimensions[cartSize].height}px`};
+  margin-left: ${({ cartSize, theme }) => theme.carts.margins[cartSize] + "px"};
 `;
