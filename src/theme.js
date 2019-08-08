@@ -6,7 +6,7 @@ const theme = {
     addCartButtonBackground: "#000040",
     addCartButtonText: "#EEEEFF",
     sizeButton: "#AAAAAA",
-    sizeButtonSelected: "#4dc947",
+    sizeButtonSelected: "#72cbe0",
     sizeButtonText: "#000000",
     cartName: "#000000",
     title: "#EEEEFF",
