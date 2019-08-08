@@ -48,6 +48,7 @@ const MainScreen = () => {
   const onFormComplete = () => {
     hideModal();
     setUploading(false);
+    setFormUploadProgress(0);
   };
 
   const onAddCartFormSubmit = ({ name, color, file }) => {
