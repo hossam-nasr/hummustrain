@@ -7,8 +7,9 @@ export const Container = styled.div`
   align-items: flex-end;
 `;
 
-export const HeadImg = styled.img`
+export const TrainImg = styled.img`
   user-select: none;
+  margin-left: ${({ cartSize, theme }) => theme.carts.margins[cartSize] + "px"};
   max-height: ${({ cartSize, theme }) =>
     `${2.3 * theme.carts.dimensions[cartSize].height}px`};
   margin-left: ${({ cartSize, theme }) => theme.carts.margins[cartSize] + "px"};
