@@ -9,8 +9,13 @@ const theme = {
     sizeButtonSelected: "dodgerBlue",
     sizeButtonText: "black",
     cartName: "black",
-    title: "white",
-    primary: "black"
+    title: "#EEEEFF",
+    primary: "black",
+    sizePickerText: "#000000"
+  },
+  shadows: {
+    title: "0px 0px 40px rgba(0, 0, 0, 0.5)",
+    sizePickerText: "0px 2px 7px rgba(255, 255, 255, 1)"
   },
   fonts: {
     primary: "Quicksand, Lato, sans-serif",
