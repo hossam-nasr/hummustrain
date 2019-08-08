@@ -1,5 +1,6 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { themeGet } from "@styled-system/theme-get";
+import bounceIn from "react-animations/lib/bounceIn";
 
 export const Container = styled.div`
   display: flex;
@@ -8,6 +9,8 @@ export const Container = styled.div`
   justify-content: center;
   margin-top: ${({ cartSize, theme }) => theme.carts.margins[cartSize] + "px"};
   margin-left: ${({ cartSize, theme }) => theme.carts.margins[cartSize] + "px"};
+  transition: all 0.7s ease-out;
+  animation: 0.7s ${keyframes`${bounceIn}`};
 `;
 
 export const CartBox = styled.div`
