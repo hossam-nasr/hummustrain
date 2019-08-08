@@ -13,9 +13,9 @@ const theme = {
     primary: "black"
   },
   fonts: {
-    primary: "sans-serif",
-    secondary: "sans-serif",
-    title: "sans-serif"
+    primary: "Quicksand, Lato, sans-serif",
+    secondary: "Lato, Quicksand, sans-serif",
+    title: "Lato, Quicksand, sans-serif"
   },
   carts: {
     sizes: ["XS", "S", "M", "L", "XL"],
