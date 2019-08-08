@@ -1,10 +1,10 @@
 import React from "react";
 import { Container, Text } from "./styles";
 
-const AddCartButton = ({ onClick }) => (
+const ActionButton = ({ onClick, children }) => (
   <Container onClick={onClick}>
-    <Text>Board the Hummus Train!</Text>
+    <Text>{children}</Text>
   </Container>
 );
 
-export default AddCartButton;
+export default ActionButton;
