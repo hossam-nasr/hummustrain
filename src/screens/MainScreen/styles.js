@@ -30,9 +30,15 @@ export const Title = styled.div`
   }
 `;
 
+export const ButtonFiller = styled.div`
+  height: 100px;
+  width: 100%;
+`;
+
 export const ButtonContainer = styled.div`
-  margin-top: 20px;
-  margin-bottom: 20px;
+  position: fixed;
+  bottom: 20px;
+  z-index: 3;
 `;
 
 export const HeaderContainer = styled.div`

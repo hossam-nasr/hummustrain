@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Rodal from "rodal";
 import "rodal/lib/rodal.css";
-import { Container, Title, ButtonContainer, HeaderContainer } from "./styles";
+import {
+  Container,
+  Title,
+  ButtonContainer,
+  HeaderContainer,
+  ButtonFiller
+} from "./styles";
 import ActionButton from "../../components/ActionButton";
 import Train from "./components/Train";
 import SizePicker from "./components/SizePicker";
@@ -68,6 +74,7 @@ const MainScreen = () => {
         <SizePicker setCartSize={setCartSize} selectedSize={cartSize} />
       </HeaderContainer>
       <Train carts={carts} cartSize={cartSize} />
+      <ButtonFiller />
       <ButtonContainer>
         <ActionButton onClick={onButtonPress}>
           Board the Hummus Train!
