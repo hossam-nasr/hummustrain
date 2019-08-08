@@ -21,6 +21,8 @@ export const CartContainer = styled.div`
     theme.carts.dimensions[cartSize].height + "px"};
   width: ${({ cartSize, theme }) =>
     theme.carts.dimensions[cartSize].width + "px"};
+  border-radius: ${({ cartSize, theme }) =>
+    theme.carts.dimensions[cartSize].width * 0.03 + "px"};
 `;
 
 export const Name = styled.div`
