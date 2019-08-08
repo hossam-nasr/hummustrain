@@ -11,11 +11,18 @@ const theme = {
     cartName: "#000000",
     title: "#EEEEFF",
     primary: "#000000",
-    sizePickerText: "#000000"
+    sizePickerText: "#000000",
+    formInputBorder: "#CCCCDD",
+    formInputBorderHover: "#CCCCFF",
+    formInputBorderActive: "#B0B0FF",
+    progressBarBackground: "#EEEEFF",
+    progressBarLeft: "#EEEEFF",
+    progressBarRight: "#000040"
   },
   shadows: {
     title: "0px 0px 40px rgba(0, 0, 0, 0.5)",
-    sizePickerText: "0px 2px 7px rgba(255, 255, 255, 1)"
+    sizePickerText: "0px 2px 7px rgba(255, 255, 255, 1)",
+    colorPickerBox: "0 0 1px 1px rgba(0, 0, 0, 0.3)"
   },
   fonts: {
     primary: "Quicksand, Lato, sans-serif",

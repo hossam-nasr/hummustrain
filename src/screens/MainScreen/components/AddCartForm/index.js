@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import {
   Container,
   Title,
-  FormRow,
+  FormColumn,
   Label,
   NameInput,
-  BoardButton,
-  ProgressBar
+  ProgressBar,
+  FooterContainer,
+  ButtonContainer
 } from "./styles";
+import ActionButton from "../../../../components/ActionButton";
 import ColorPicker from "./components/ColorPicker";
 import ImagePicker from "./components/ImagePicker";
 import { defaultName, defaultColor } from "../../../../constants";
@@ -38,7 +40,7 @@ const AddCartForm = ({ onSubmit, progress, uploading }) => {
   return (
     <Container>
       <Title>Board the Hummus Train!</Title>
-      <FormRow>
+      <FormColumn>
         <Label>Name:</Label>
         <NameInput
           type="text"
@@ -46,16 +48,20 @@ const AddCartForm = ({ onSubmit, progress, uploading }) => {
           value={name}
           onChange={onNameChange}
         />
-      </FormRow>
-      <FormRow>
+      </FormColumn>
+      <FormColumn>
         <Label>Cart color:</Label>
         <ColorPicker color={color} onChange={onColorChange} />
-      </FormRow>
+      </FormColumn>
       <ImagePicker onSave={onImageSave} />
-      <FormRow>
+      <FooterContainer>
         <ProgressBar value={progress} max={100} />
-      </FormRow>
-      <BoardButton onClick={submitForm}>Board the Hummus train!</BoardButton>
+        <ButtonContainer>
+          <ActionButton onClick={submitForm}>
+            Board the Hummus Train!
+          </ActionButton>
+        </ButtonContainer>
+      </FooterContainer>
     </Container>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import {
   Container,
-  FormRow,
+  FormColumn,
   Label,
   FileUploadInput,
   ModalTitle,
@@ -81,10 +81,10 @@ const ImagePicker = ({ onSave }) => {
 
   return (
     <Container>
-      <FormRow>
+      <FormColumn>
         <Label>Face picture:</Label>
         <FileUploadInput type="file" onChange={onFileChange} />
-      </FormRow>
+      </FormColumn>
       <PreviewContainer>
         <>
           {imgCroppedSrc && <StickMan cartSize="L" facepic={imgCroppedSrc} />}

@@ -71,7 +71,7 @@ const ColorPicker = ({ hex, onChange }) => {
       <PopoverFooter>
         {isDetailed ? (
           <Button size="sm" variant="outline-info" onClick={hideDetails}>
-            Go Back
+            Back
           </Button>
         ) : (
           <Button size="sm" variant="outline-info" onClick={showDetails}>

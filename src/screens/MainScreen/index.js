@@ -81,7 +81,7 @@ const MainScreen = () => {
         </ActionButton>
       </ButtonContainer>
       <Rodal
-        width={50}
+        width={40}
         height={80}
         measure="%"
         closeOnEsc
