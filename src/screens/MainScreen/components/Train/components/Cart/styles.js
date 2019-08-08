@@ -10,7 +10,7 @@ export const Container = styled.div`
   margin-left: ${({ cartSize, theme }) => theme.carts.margins[cartSize] + "px"};
 `;
 
-export const CartContainer = styled.div`
+export const CartBox = styled.div`
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -23,6 +23,15 @@ export const CartContainer = styled.div`
     theme.carts.dimensions[cartSize].width + "px"};
   border-radius: ${({ cartSize, theme }) =>
     theme.carts.dimensions[cartSize].width * 0.03 + "px"};
+`;
+
+export const CartContainer = styled.div`
+  display: flex;
+  flex-flow: column nowrap;
+  transform: translateY(
+    ${({ cartSize, theme }) =>
+      theme.carts.dimensions[cartSize].width * 0.1 + "px"}
+  );
 `;
 
 export const Name = styled.div`
@@ -57,4 +66,11 @@ export const Name = styled.div`
   ::-webkit-scrollbar-corner {
     background: ${({ color }) => color};
   }
+`;
+
+export const WheelImg = styled.img`
+  user-select: none;
+  max-height: ${({ cartSize, theme }) =>
+    `${0.45 * theme.carts.dimensions[cartSize].height}px`};
+  z-index: 2;
 `;
