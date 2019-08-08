@@ -3,7 +3,7 @@ import { themeGet } from "@styled-system/theme-get";
 
 export const Container = styled.div`
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   width: 100%;
   flex: 1;
   justify-content: space-between;
@@ -75,6 +75,7 @@ export const PreviewContainer = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  width: 100%;
 `;
 
 export const ButtonContainer = styled.div`
