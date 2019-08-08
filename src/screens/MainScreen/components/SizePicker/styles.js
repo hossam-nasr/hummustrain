@@ -26,11 +26,12 @@ export const SizeButton = styled.div`
       ? themeGet("colors.sizeButtonSelected")
       : themeGet("colors.sizeButton")};
   color: ${themeGet("colors.sizeButtonText")};
-  height: 35px;
+  height: ${({ selected }) => (selected ? "35px" : "30px")};
   width: 35px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  transition: 0.5s all;
+  transition: 0.4s all;
+  margin: 0.5px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -41,4 +42,7 @@ export const SizeButton = styled.div`
 export const SizeButtonGroup = styled.div`
   display: flex;
   flex-flow: row nowrap;
+  justify-content: center;
+  align-items: flex-end;
+  height: 35px;
 `;
