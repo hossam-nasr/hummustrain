@@ -3,7 +3,7 @@ import { Container, Text } from "./styles";
 
 const AddCartButton = ({ onClick }) => (
   <Container onClick={onClick}>
-    <Text>Click here to add a cart!</Text>
+    <Text>Board the Hummus Train!</Text>
   </Container>
 );
 

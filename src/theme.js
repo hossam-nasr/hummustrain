@@ -3,14 +3,14 @@ import Background from "./assets/img/hummustrain.jpg";
 const theme = {
   colors: {
     mainScreenBackground: `url(${Background})`,
-    addCartButtonBackground: "black",
-    addCartButtonText: "white",
+    addCartButtonBackground: "#000040",
+    addCartButtonText: "#EEEEFF",
     sizeButton: "#AAAAAA",
     sizeButtonSelected: "#4dc947",
-    sizeButtonText: "black",
-    cartName: "black",
+    sizeButtonText: "#000000",
+    cartName: "#000000",
     title: "#EEEEFF",
-    primary: "black",
+    primary: "#000000",
     sizePickerText: "#000000"
   },
   shadows: {
