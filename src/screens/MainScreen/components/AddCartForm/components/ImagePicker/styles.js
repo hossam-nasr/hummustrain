@@ -3,7 +3,7 @@ import { themeGet } from "@styled-system/theme-get";
 
 export const Container = styled.div`
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   width: 100%;
   flex: 1;
   justify-content: space-between;
@@ -12,16 +12,16 @@ export const Container = styled.div`
 `;
 
 export const FileUploadInput = styled.input`
-  width: 25%;
   padding-right: 10px;
 `;
 
-export const FormRow = styled.div`
+export const FormColumn = styled.div`
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   flex: 1;
+  width: 100%;
 `;
 
 export const Label = styled.div`
@@ -29,7 +29,7 @@ export const Label = styled.div`
   font-family: ${themeGet("fonts.primary")};
   font-size: 20px;
   text-align: left;
-  margin-right: 20px;
+  margin-bottom: 5px;
 `;
 
 export const ModalTitle = styled.div`
@@ -75,6 +75,7 @@ export const PreviewContainer = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  width: 100%;
 `;
 
 export const ButtonContainer = styled.div`

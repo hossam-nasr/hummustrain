@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Rodal from "rodal";
 import "rodal/lib/rodal.css";
-import { Container, Title, ButtonContainer } from "./styles";
+import {
+  Container,
+  Title,
+  ButtonContainer,
+  HeaderContainer,
+  ButtonFiller
+} from "./styles";
+import ActionButton from "../../components/ActionButton";
 import Train from "./components/Train";
-import AddCartButton from "./components/AddCartButton";
 import SizePicker from "./components/SizePicker";
 import AddCartForm from "./components/AddCartForm";
 import { addCart, setupCartUpdateListener } from "../../helpers";
@@ -63,15 +69,20 @@ const MainScreen = () => {
 
   return (
     <Container>
-      <Title>ALL ABOARD THE HUMMUS TRAIN</Title>
-      <SizePicker setCartSize={setCartSize} selectedSize={cartSize} />
+      <HeaderContainer>
+        <Title>ALL ABOARD THE HUMMUS TRAIN</Title>
+        <SizePicker setCartSize={setCartSize} selectedSize={cartSize} />
+      </HeaderContainer>
       <Train carts={carts} cartSize={cartSize} />
+      <ButtonFiller />
       <ButtonContainer>
-        <AddCartButton onClick={onButtonPress} />
+        <ActionButton onClick={onButtonPress}>
+          Board the Hummus Train!
+        </ActionButton>
       </ButtonContainer>
       <Rodal
-        width={50}
-        height={80}
+        width={40}
+        height={90}
         measure="%"
         closeOnEsc
         showMask

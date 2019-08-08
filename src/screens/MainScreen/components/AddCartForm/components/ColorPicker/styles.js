@@ -12,8 +12,8 @@ export const ColorCircleContainer = styled.div`
   align-items: center;
   padding: 5px;
   background-color: white;
-  border-radius: 1px;
-  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  border: 1px solid ${themeGet("colors.formInputBorder")};
   cursor: pointer;
 `;
 
