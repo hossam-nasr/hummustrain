@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Rodal from "rodal";
 import "rodal/lib/rodal.css";
-import { Container, Title, ButtonContainer } from "./styles";
+import { Container, Title, ButtonContainer, HeaderContainer } from "./styles";
 import Train from "./components/Train";
 import AddCartButton from "./components/AddCartButton";
 import SizePicker from "./components/SizePicker";
@@ -63,8 +63,10 @@ const MainScreen = () => {
 
   return (
     <Container>
-      <Title>ALL ABOARD THE HUMMUS TRAIN</Title>
-      <SizePicker setCartSize={setCartSize} selectedSize={cartSize} />
+      <HeaderContainer>
+        <Title>ALL ABOARD THE HUMMUS TRAIN</Title>
+        <SizePicker setCartSize={setCartSize} selectedSize={cartSize} />
+      </HeaderContainer>
       <Train carts={carts} cartSize={cartSize} />
       <ButtonContainer>
         <AddCartButton onClick={onButtonPress} />

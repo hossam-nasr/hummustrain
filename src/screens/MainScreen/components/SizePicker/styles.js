@@ -11,8 +11,9 @@ export const Container = styled.div`
 `;
 
 export const Label = styled.div`
-  color: black;
+  color: ${themeGet("colors.sizePickerText")};
   font-family: ${themeGet("fonts.secondary")};
+  text-shadow: ${themeGet("shadows.sizePickerText")};
   font-size: 22px;
   margin-right: 10px;
 `;
@@ -29,6 +30,7 @@ export const SizeButton = styled.div`
   width: 35px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+  transition: 0.5s all;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
