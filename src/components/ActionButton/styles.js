@@ -1,9 +1,10 @@
 import styled from "styled-components";
+import { isMobileOnly } from "react-device-detect";
 import { themeGet } from "@styled-system/theme-get";
 
 export const Container = styled.div`
-  height: 60px;
-  width: 320px;
+  height: ${isMobileOnly ? "45px" : "60px"};
+  width: ${isMobileOnly ? "80vw" : "320px"};
   border-radius: 7px;
   display: flex;
   justify-content: center;
@@ -25,7 +26,8 @@ export const Container = styled.div`
 `;
 
 export const Text = styled.div`
-  font-size: 24px;
+  padding: 10px;
+  font-size: ${isMobileOnly ? "22px" : "24px"};
   text-align: center;
   font-family: ${themeGet("fonts.primary")};
 `;

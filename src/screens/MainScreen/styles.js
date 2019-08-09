@@ -20,13 +20,15 @@ export const Title = styled.div`
   font-size: 100px;
   text-align: center;
   text-shadow: ${themeGet("shadows.title")};
+  margin-right: 10px;
+  margin-left: 10px;
   @media all and (max-width: 800px) {
     font-weight: 400;
     font-size: 60px;
   }
   @media all and (max-width: 500px) {
     font-weight: 400;
-    font-size: 32px;
+    font-size: 42px;
   }
 `;
 

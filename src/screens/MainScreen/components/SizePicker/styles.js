@@ -4,10 +4,11 @@ import { themeGet } from "@styled-system/theme-get";
 export const Container = styled.div`
   display: flex;
   flex-flow: row nowrap;
-  align-self: flex-end;
+  align-self: ${({ isMobile }) => (isMobile ? "center" : "flex-end")};
   margin-right: 50px;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
+  margin-top: 10px;
 `;
 
 export const Label = styled.div`

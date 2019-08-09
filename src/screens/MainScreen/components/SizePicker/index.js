@@ -8,7 +8,7 @@ const SizePicker = ({ selectedSize, setCartSize }) => {
     ? theme.carts.sizes.mobile
     : theme.carts.sizes.regular;
   return (
-    <Container>
+    <Container isMobile={isMobileOnly}>
       <Label>Train Size:</Label>
       <SizeButtonGroup>
         {sizes.map(size => (
