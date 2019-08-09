@@ -3,11 +3,20 @@ import { themeGet } from "@styled-system/theme-get";
 
 export const Container = styled.div`
   display: flex;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-flow: column nowrap;
+  padding: 0px 20px 20px 20px;
+`;
+
+export const InnerContainer = styled.div`
+  display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  padding: 0px 20px 20px 20px;
-  overflow: auto;
+  width: 100%;
+  min-height: min-content; /* TODO: add browser prefixes */
 `;
 
 export const FormColumn = styled.div`
@@ -103,7 +112,7 @@ export const ProgressBar = styled.progress`
 `;
 
 export const FooterContainer = styled(FormColumn)`
-  margin-top: 30px;
+  margin-top: 10px;
   justify-content: center;
   align-items: center;
   flex-shrink: 0;

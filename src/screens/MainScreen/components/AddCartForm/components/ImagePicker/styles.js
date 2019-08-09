@@ -14,6 +14,7 @@ export const Container = styled.div`
 
 export const FileUploadInput = styled.input`
   padding-right: 10px;
+  width: 80%;
 `;
 
 export const FormColumn = styled.div`
@@ -83,6 +84,7 @@ export const ZoomSliderContainer = styled.div`
 `;
 
 export const PreviewContainer = styled.div`
+  margin-top: 10px;
   display: flex;
   flex-shrink: 0;
   flex-flow: column nowrap;
