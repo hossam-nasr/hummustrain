@@ -50,3 +50,15 @@ export const HeaderContainer = styled.div`
   align-items: center;
   width: 100%;
 `;
+
+export const ModalTitle = styled.div`
+  color: ${themeGet("colors.primary")};
+  font-family: ${themeGet("fonts.primary")};
+  font-size: 32px;
+  text-align: center;
+  width: 100%;
+
+  @media all and (max-width: 500px) {
+    font-size: 24px;
+  }
+`;

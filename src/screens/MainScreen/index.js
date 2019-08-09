@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { isMobileOnly } from "react-device-detect";
+import { Modal } from "react-bootstrap";
 import Rodal from "rodal";
 import "rodal/lib/rodal.css";
 import {
@@ -7,7 +8,8 @@ import {
   Title,
   ButtonContainer,
   HeaderContainer,
-  ButtonFiller
+  ButtonFiller,
+  ModalTitle
 } from "./styles";
 import ActionButton from "../../components/ActionButton";
 import Train from "./components/Train";
@@ -84,15 +86,16 @@ const MainScreen = () => {
           Board the Hummus Train!
         </ActionButton>
       </ButtonContainer>
-      <Rodal
-        width={isMobileOnly ? 100 : 40}
-        height={isMobileOnly ? 100 : 90}
-        measure="%"
-        closeOnEsc
-        showMask
-        visible={modalVisible}
-        onClose={hideModal}
+      <Modal
+        centered
+        scrollable
+        size="lg"
+        show={modalVisible}
+        onHide={hideModal}
       >
+        <Modal.Header closeButton>
+          <ModalTitle>Board the Hummus Train!</ModalTitle>
+        </Modal.Header>
         {// manually unmount the form to reset state on close
         modalVisible && (
           <AddCartForm
@@ -101,7 +104,7 @@ const MainScreen = () => {
             uploading={uploading}
           />
         )}
-      </Rodal>
+      </Modal>
     </Container>
   );
 };
