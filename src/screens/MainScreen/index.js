@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
-import Rodal from "rodal";
+import { SkyLightStateless } from "react-skylight";
 import "rodal/lib/rodal.css";
 import {
   Container,
   Title,
   ButtonContainer,
   HeaderContainer,
-  ButtonFiller
+  ButtonFiller,
+  dialogStyles
 } from "./styles";
 import ActionButton from "../../components/ActionButton";
 import Train from "./components/Train";
@@ -81,14 +82,13 @@ const MainScreen = () => {
           Board the Hummus Train!
         </ActionButton>
       </ButtonContainer>
-      <Rodal
-        width={40}
-        height={90}
-        measure="%"
+      <SkyLightStateless
+        dialogStyles={dialogStyles}
+        hideOnOverlayClicked
+        isVisible={modalVisible}
+        onOverlayClicked={hideModal}
+        onCloseClicked={hideModal}
         closeOnEsc
-        showMask
-        visible={modalVisible}
-        onClose={hideModal}
       >
         {// manually unmount the form to reset state on close
         modalVisible && (
@@ -98,7 +98,7 @@ const MainScreen = () => {
             uploading={uploading}
           />
         )}
-      </Rodal>
+      </SkyLightStateless>
     </Container>
   );
 };

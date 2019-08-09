@@ -48,3 +48,10 @@ export const HeaderContainer = styled.div`
   align-items: center;
   width: 100%;
 `;
+
+export const dialogStyles = {
+  height: "",
+  width: "",
+  minWidth: "20%",
+  minHeight: "50%"
+};

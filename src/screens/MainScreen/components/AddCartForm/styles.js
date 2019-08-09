@@ -111,9 +111,6 @@ export const ProgressBar = styled.progress`
 export const FooterContainer = styled(FormColumn)`
   justify-content: center;
   align-items: center;
-  position: absolute;
-  bottom: 20px;
-  padding: 20px 40px 20px 40px;
 `;
 
 export const ButtonContainer = styled.div`
