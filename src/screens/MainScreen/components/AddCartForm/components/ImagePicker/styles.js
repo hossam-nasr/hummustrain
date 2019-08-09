@@ -9,6 +9,7 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   padding-top: 20px;
+  flex-shrink: 0;
 `;
 
 export const FileUploadInput = styled.input`
@@ -83,10 +84,14 @@ export const ZoomSliderContainer = styled.div`
 
 export const PreviewContainer = styled.div`
   display: flex;
+  flex-shrink: 0;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
   width: 100%;
+  @media all and (max-width: 500px) {
+    margin-top: 20px;
+  }
 `;
 
 export const ButtonContainer = styled.div`
