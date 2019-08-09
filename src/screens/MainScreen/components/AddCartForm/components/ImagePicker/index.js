@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { isMobileOnly } from "react-device-detect";
 import {
   Container,
   FormColumn,
@@ -118,7 +119,7 @@ const ImagePicker = ({ onSave }) => {
           )}
         </>
       </PreviewContainer>
-      <Modal centered show={modalVisible} onHide={onModalHide}>
+      <Modal centered scrollable show={modalVisible} onHide={onModalHide}>
         <Modal.Header closeButton>
           <ModalTitle>Crop your image to fit your face!</ModalTitle>
         </Modal.Header>
@@ -141,7 +142,7 @@ const ImagePicker = ({ onSave }) => {
                   : 200
               }
               borderRadius={134}
-              border={50}
+              border={isMobileOnly ? 20 : 50}
               color={[255, 255, 255, 0.7]}
               scale={scale}
               rotate={rotation}
