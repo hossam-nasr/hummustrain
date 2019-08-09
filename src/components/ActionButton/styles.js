@@ -3,7 +3,7 @@ import { isMobileOnly } from "react-device-detect";
 import { themeGet } from "@styled-system/theme-get";
 
 export const Container = styled.div`
-  height: ${isMobileOnly ? "45px" : "60px"};
+  height: ${isMobileOnly ? "" : "60px"};
   width: ${isMobileOnly ? "80vw" : "320px"};
   border-radius: 7px;
   display: flex;
@@ -26,7 +26,7 @@ export const Container = styled.div`
 `;
 
 export const Text = styled.div`
-  padding: 10px;
+  padding: 7px;
   font-size: ${isMobileOnly ? "22px" : "24px"};
   text-align: center;
   font-family: ${themeGet("fonts.primary")};
