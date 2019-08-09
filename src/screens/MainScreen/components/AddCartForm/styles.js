@@ -6,15 +6,8 @@ export const Container = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  padding: 20px;
-`;
-
-export const Title = styled.div`
-  color: ${themeGet("colors.primary")};
-  font-family: ${themeGet("fonts.primary")};
-  font-size: 32px;
-  text-align: center;
-  margin-bottom: 20px;
+  padding: 0px 20px 20px 20px;
+  overflow: auto;
 `;
 
 export const FormColumn = styled.div`
@@ -22,6 +15,7 @@ export const FormColumn = styled.div`
   flex-flow: column nowrap;
   width: 100%;
   flex: 1;
+  flex-shrink: 0;
   justify-content: flex-start;
   align-items: flex-start;
   padding-top: 20px;
@@ -109,11 +103,14 @@ export const ProgressBar = styled.progress`
 `;
 
 export const FooterContainer = styled(FormColumn)`
+  margin-top: 30px;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  bottom: 20px;
-  padding: 20px 40px 20px 40px;
+  flex-shrink: 0;
+
+  @media all and (max-width: 500px) {
+    margin-top: 0px;
+  }
 `;
 
 export const ButtonContainer = styled.div`
