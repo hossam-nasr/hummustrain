@@ -39,7 +39,6 @@ const AddCartForm = ({ onSubmit, progress, uploading }) => {
 
   return (
     <Container>
-      <Title>Board the Hummus Train!</Title>
       <FormColumn>
         <Label>Name:</Label>
         <NameInput
