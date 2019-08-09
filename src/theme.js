@@ -30,7 +30,7 @@ const theme = {
     title: "Lato, Quicksand, sans-serif"
   },
   carts: {
-    sizes: ["XS", "S", "M", "L", "XL"],
+    sizes: { regular: ["XS", "S", "M", "L", "XL"], mobile: ["XS", "S", "M"] },
     dimensions: {
       XS: { width: 50, height: 20 },
       S: { width: 180, height: 60 },
