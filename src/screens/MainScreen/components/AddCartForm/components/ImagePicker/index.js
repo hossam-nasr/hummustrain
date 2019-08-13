@@ -25,16 +25,27 @@ import StickMan from "../../../../../../components/StickMan";
 
 const ImagePicker = ({ onSave }) => {
   const [file, setFile] = useState(null);
+  const [isNewFile, setIsNewFile] = useState(true);
   const [imgCroppedSrc, setImgCroppedSrc] = useState(null);
   const [imgCroppedBlob, setImgCroppedBlob] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [scale, setScale] = useState(1);
   const [rotation, setRotation] = useState(0);
+  const [savedScale, setSavedScale] = useState(1);
+  const [savedRotation, setSavedRotation] = useState(0);
   const editor = useRef(null);
 
   const onFileChange = event => {
     if (event.target.files[0]) {
+      if (file && file.name !== event.target.files[0].name) {
+        setIsNewFile(true);
+      }
       setFile(event.target.files[0]);
+      // reset crop
+      setRotation(0);
+      setScale(1);
+      setSavedRotation(0);
+      setSavedScale(1);
       showModal();
     }
   };
@@ -51,33 +62,42 @@ const ImagePicker = ({ onSave }) => {
     setModalVisible(false);
   };
 
-  const onEditorClickSave = () => {
+  const onEditorClickSave = async () => {
     if (editor) {
       const canvas = editor.current.getImage().toDataURL();
       setImgCroppedSrc(canvas);
-      fetch(canvas).then(res => {
-        res.blob().then(blob => {
-          setImgCroppedBlob(blob);
-          onSave(blob);
-          hideModal();
-        });
-      });
+      setSavedRotation(rotation);
+      setSavedScale(scale);
+      setIsNewFile(false);
+      const res = await fetch(canvas);
+      const blob = await res.blob();
+      setImgCroppedBlob(blob);
+      onSave(blob);
+      hideModal();
     }
   };
 
   const onEditorCancel = () => {
-    // if the image isn't already set, set it without cropping
-    if (file && !imgCroppedBlob) {
+    // if it's a new file, set it without cropping
+    if (file && isNewFile) {
       // set blob
       setImgCroppedBlob(file);
+      onSave(file);
+
       // set src
       const reader = new FileReader();
       reader.onload = e => {
         setImgCroppedSrc(e.target.result);
       };
       reader.readAsDataURL(file);
+    }
+    // no longer a new file
+    if (isNewFile) {
       setIsNewFile(false);
     }
+    // return to the old saved crop
+    setScale(savedScale);
+    setRotation(savedRotation);
     hideModal();
   };
 
