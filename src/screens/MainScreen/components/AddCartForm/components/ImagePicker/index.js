@@ -33,8 +33,10 @@ const ImagePicker = ({ onSave }) => {
   const editor = useRef(null);
 
   const onFileChange = event => {
-    setFile(event.target.files[0]);
-    showModal();
+    if (event.target.files[0]) {
+      setFile(event.target.files[0]);
+      showModal();
+    }
   };
 
   const hideModal = () => {
@@ -104,7 +106,7 @@ const ImagePicker = ({ onSave }) => {
     <Container>
       <FormColumn>
         <Label>Face picture:</Label>
-        <FileUploadInput type="file" onChange={onFileChange} />
+        <FileUploadInput type="file" onChange={onFileChange} accept="image/*" />
       </FormColumn>
       <PreviewContainer>
         <>
