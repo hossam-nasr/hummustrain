@@ -66,6 +66,18 @@ const ImagePicker = ({ onSave }) => {
   };
 
   const onEditorCancel = () => {
+    // if the image isn't already set, set it without cropping
+    if (file && !imgCroppedBlob) {
+      // set blob
+      setImgCroppedBlob(file);
+      // set src
+      const reader = new FileReader();
+      reader.onload = e => {
+        setImgCroppedSrc(e.target.result);
+      };
+      reader.readAsDataURL(file);
+      setIsNewFile(false);
+    }
     hideModal();
   };
 
@@ -106,7 +118,12 @@ const ImagePicker = ({ onSave }) => {
     <Container>
       <FormColumn>
         <Label>Face picture:</Label>
-        <FileUploadInput type="file" onChange={onFileChange} accept="image/*" />
+        <FileUploadInput
+          type="file"
+          onChange={onFileChange}
+          accept="image/*"
+          multiple={false}
+        />
       </FormColumn>
       <PreviewContainer>
         <>
