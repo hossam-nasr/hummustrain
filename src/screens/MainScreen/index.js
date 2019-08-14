@@ -3,6 +3,8 @@ import { isMobileOnly } from "react-device-detect";
 import { Modal } from "react-bootstrap";
 import Rodal from "rodal";
 import "rodal/lib/rodal.css";
+import Confetti from "react-confetti";
+import useWindowSize from "react-use/lib/useWindowSize";
 import {
   Container,
   Title,
@@ -17,8 +19,11 @@ import SizePicker from "./components/SizePicker";
 import AddCartForm from "./components/AddCartForm";
 import { addCart, setupCartUpdateListener } from "../../helpers";
 import { loadAudio, defaultSize } from "../../constants";
+const moment = require("moment");
 
 const audio = new Audio(loadAudio);
+
+const isHummusThursday = moment().isoWeekday() === 3;
 
 const MainScreen = () => {
   const [carts, setCarts] = useState([]);
@@ -28,6 +33,8 @@ const MainScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [formUploadProgress, setFormUploadProgress] = useState(0);
   const [uploading, setUploading] = useState(false);
+
+  const { width, height } = useWindowSize();
 
   const showModal = () => {
     setModalVisible(true);
@@ -75,8 +82,13 @@ const MainScreen = () => {
 
   return (
     <Container>
+      {isHummusThursday && <Confetti width={width} height={height} />}
       <HeaderContainer>
-        <Title>ALL ABOARD THE HUMMUS TRAIN</Title>
+        <Title>
+          {isHummusThursday
+            ? "IT'S HUMMUS THURSDAY!"
+            : "ALL ABOARD THE HUMMUS TRAIN"}
+        </Title>
         <SizePicker setCartSize={setCartSize} selectedSize={cartSize} />
       </HeaderContainer>
       <Train carts={carts} cartSize={cartSize} />
