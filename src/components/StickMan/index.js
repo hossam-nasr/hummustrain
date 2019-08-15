@@ -7,10 +7,15 @@ import {
   StickManHeadImg
 } from "./styles";
 
-const StickMan = ({ cartSize, facepic }) => (
+const StickMan = ({ cartSize, facepic, onClick }) => (
   <Container cartSize={cartSize}>
     <StickManContainer>
-      <StickManHeadImg src={facepic} cartSize={cartSize} />
+      <StickManHeadImg
+        onClick={onClick}
+        cursorPointer={onClick ? true : false}
+        src={facepic}
+        cartSize={cartSize}
+      />
       <StickManBodyImg src={StickManBody} cartSize={cartSize} />
     </StickManContainer>
   </Container>

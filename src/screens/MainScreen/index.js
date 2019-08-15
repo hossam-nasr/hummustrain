@@ -17,11 +17,29 @@ import ActionButton from "../../components/ActionButton";
 import Train from "./components/Train";
 import SizePicker from "./components/SizePicker";
 import AddCartForm from "./components/AddCartForm";
-import { addCart, setupCartUpdateListener } from "../../helpers";
-import { loadAudio, defaultSize } from "../../constants";
+import Timer from "./components/Timer";
+import {
+  addCart,
+  setupCartUpdateListener,
+  getConstants,
+  setupTriggersUpdateListener
+} from "../../helpers";
+import {
+  loadAudio,
+  trainLeavingAudio,
+  defaultLeaveAnimationDuration,
+  defaultTimerDisplayDuration,
+  defaultSize
+} from "../../constants";
 const moment = require("moment");
 
 const audio = new Audio(loadAudio);
+const leaveAudio = new Audio(trainLeavingAudio);
+
+let constants = null;
+getConstants().then(result => {
+  constants = result;
+});
 
 const isHummusThursday = moment().isoWeekday() === 4;
 
@@ -33,6 +51,10 @@ const MainScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [formUploadProgress, setFormUploadProgress] = useState(0);
   const [uploading, setUploading] = useState(false);
+  const [displayTimer, setDisplayTimer] = useState(false);
+  const [timerStartTime, setTimerStartTime] = useState(null);
+  const [leaving, setLeaving] = useState(false);
+  const [doneLeaving, setDoneLeaving] = useState(false);
 
   const { width, height } = useWindowSize();
 
@@ -65,6 +87,7 @@ const MainScreen = () => {
 
   const onAddCartFormSubmit = ({ name, color, file }) => {
     setUploading(true);
+    setFormUploadProgress(10);
     addCart({
       name,
       color,
@@ -74,15 +97,49 @@ const MainScreen = () => {
     });
   };
 
+  // set the start date of the timer when we first display it
+  // avoid resetting "Date.now()" on every render and resetting timer on state updates
+  useEffect(() => {
+    if (displayTimer) {
+      setTimerStartTime(Date.now());
+    }
+  }, [displayTimer]);
+
+  // play train leaving audio when it's leaving
+  useEffect(() => {
+    if (leaving) {
+      leaveAudio.play();
+    }
+  }, [leaving]);
+
+  // set up listeners
   useEffect(() => {
     setupCartUpdateListener(carts => {
       setCarts(carts);
+    });
+
+    setupTriggersUpdateListener(({ leaving, displayTimer, done }) => {
+      setLeaving(leaving);
+      setDisplayTimer(displayTimer);
+      setDoneLeaving(done);
     });
   }, []);
 
   return (
     <Container>
       {isHummusThursday && <Confetti width={width} height={height} />}
+      {displayTimer && (
+        <Timer
+          start={timerStartTime || Date.now()}
+          done={doneLeaving}
+          duration={
+            constants
+              ? constants.timerDisplayDuration
+              : defaultTimerDisplayDuration
+          }
+        />
+      )}
+
       <HeaderContainer>
         <Title>
           {isHummusThursday
@@ -91,7 +148,16 @@ const MainScreen = () => {
         </Title>
         <SizePicker setCartSize={setCartSize} selectedSize={cartSize} />
       </HeaderContainer>
-      <Train carts={carts} cartSize={cartSize} />
+      <Train
+        carts={carts}
+        cartSize={cartSize}
+        leaving={leaving}
+        animationDuration={
+          constants
+            ? constants.leaveAnimationDuration
+            : defaultLeaveAnimationDuration
+        }
+      />
       <ButtonFiller />
       <ButtonContainer>
         <ActionButton onClick={onButtonPress}>

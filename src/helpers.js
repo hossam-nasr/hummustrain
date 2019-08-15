@@ -9,7 +9,9 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 const storage = firebase.storage();
 const collectionRef = db.collection("carts");
-const getQuery = db.collectionGroup("carts").orderBy("timestamp", "asc");
+const getCartsQuery = db.collectionGroup("carts").orderBy("timestamp", "asc");
+const getConstantsQuery = db.doc("/triggers/constants");
+const getTriggersQuery = db.doc("/triggers/triggers");
 const getTimestamp = firebase.firestore.Timestamp.now;
 
 const extractJsonFromResponse = async response =>
@@ -35,19 +37,19 @@ const extractDocData = async doc => {
   return { ...docJson, facepic: imgUrl };
 };
 
-export const getCarts = callback => {
-  getQuery
-    .get()
-    .then(response => {
-      extractJsonFromResponse(response).then(callback);
-    })
-    .catch(error => {
-      console.error("Error retrieving carts from database: ", error);
-    });
+export const getCarts = async () => {
+  try {
+    const response = await getCartsQuery.get();
+    const respJson = await extractJsonFromResponse(response);
+    return respJson;
+  } catch (error) {
+    console.error("Error retrieving carts: ", error.message);
+    return [];
+  }
 };
 
 export const setupCartUpdateListener = callback => {
-  getQuery.onSnapshot(response => {
+  getCartsQuery.onSnapshot(response => {
     extractJsonFromResponse(response)
       .then(callback)
       .catch(error => {
@@ -56,40 +58,75 @@ export const setupCartUpdateListener = callback => {
   });
 };
 
+export const getConstants = async () => {
+  try {
+    const docRef = await getConstantsQuery.get();
+    const respJson = await (docRef.exists && docRef.data());
+    return respJson;
+  } catch (error) {
+    console.error("Encountered error getting constants: ", error.message);
+  }
+};
+
+export const setupTriggersUpdateListener = async callback => {
+  getTriggersQuery.onSnapshot(async docRef => {
+    try {
+      const respJson = await (docRef.exists && docRef.data());
+      callback(respJson);
+    } catch (error) {
+      console.log("Error refreshing triggers: ", error.message);
+    }
+  });
+};
+
 export const addCart = ({
   color,
   name,
   file,
   onUploadProgress,
-  onComplete
+  onComplete,
 }) => {
-  // create path for file upload
-  const imgPath = "facePics/" + getTimestamp();
-  // upload file
-  const uploadTask = storage.ref(imgPath).put(file);
+  if (file) {
+    // create path for file upload
+    const imgPath = "facePics/" + getTimestamp();
+    // upload file
+    const uploadTask = storage.ref(imgPath).put(file);
 
-  // setup listeners for file upload
-  uploadTask.on(
-    "state_changed",
-    onUploadProgress,
-    error => {
-      console.error("Error uploading file", error.message);
-    },
-    // on upload complete
-    () => {
-      // set document in firestore, with img as path
-      collectionRef
-        .doc()
-        .set({
-          name,
-          color,
-          timestamp: getTimestamp(),
-          facepic: imgPath
-        })
-        .then(onComplete)
-        .catch(error => {
-          console.error("Error adding cart:", error.message);
-        });
-    }
-  );
+    // setup listeners for file upload
+    uploadTask.on(
+      "state_changed",
+      onUploadProgress,
+      error => {
+        console.error("Error uploading file", error.message);
+      },
+      // on upload complete
+      () => {
+        // set document in firestore, with img as path
+        collectionRef
+          .doc()
+          .set({
+            name,
+            color,
+            timestamp: getTimestamp(),
+            facepic: imgPath,
+          })
+          .then(onComplete)
+          .catch(error => {
+            console.error("Error adding cart:", error.message);
+          });
+      }
+    );
+  } else {
+    collectionRef
+      .doc()
+      .set({
+        name,
+        color,
+        timestamp: getTimestamp(),
+      })
+      .then(onComplete)
+      .catch(error => {
+        console.error("Error adding cart:", error.message);
+      });
+  }
 };
