@@ -1,8 +1,8 @@
 import React from "react";
 import { Container, Text } from "./styles";
 
-const ActionButton = ({ onClick, children }) => (
-  <Container onClick={onClick}>
+const ActionButton = ({ onClick, children, disabled }) => (
+  <Container disabled={disabled} onClick={disabled ? () => {} : onClick}>
     <Text>{children}</Text>
   </Container>
 );

@@ -8,7 +8,7 @@ import {
   ProgressBar,
   FooterContainer,
   ButtonContainer,
-  InnerContainer
+  InnerContainer,
 } from "./styles";
 import ActionButton from "../../../../components/ActionButton";
 import ColorPicker from "./components/ColorPicker";
@@ -58,8 +58,10 @@ const AddCartForm = ({ onSubmit, progress, uploading }) => {
         <FooterContainer>
           <ProgressBar value={progress} max={100} />
           <ButtonContainer>
-            <ActionButton onClick={submitForm}>
-              Board the Hummus Train!
+            <ActionButton disabled={uploading} onClick={submitForm}>
+              {uploading
+                ? "Boarding the Hummus Train..."
+                : "Board the Hummus Train!"}
             </ActionButton>
           </ButtonContainer>
         </FooterContainer>

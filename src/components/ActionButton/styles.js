@@ -9,10 +9,13 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${themeGet("colors.addCartButtonBackground")};
+  background-color: ${({ disabled }) =>
+    disabled
+      ? themeGet("colors.addCartButtonBackgroundDisabled")
+      : themeGet("colors.addCartButtonBackground")};
   color: ${themeGet("colors.addCartButtonText")};
   border: 3px solid ${themeGet("colors.addCartButtonText")};
-  cursor: pointer;
+  cursor: ${({ disabled }) => (disabled ? null : "pointer")};
   user-select: none;
   transition: all 0.5s ease;
 
