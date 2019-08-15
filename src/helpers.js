@@ -86,33 +86,47 @@ export const addCart = ({
   onUploadProgress,
   onComplete
 }) => {
-  // create path for file upload
-  const imgPath = "facePics/" + getTimestamp();
-  // upload file
-  const uploadTask = storage.ref(imgPath).put(file);
+  if (file) {
+    // create path for file upload
+    const imgPath = "facePics/" + getTimestamp();
+    // upload file
+    const uploadTask = storage.ref(imgPath).put(file);
 
-  // setup listeners for file upload
-  uploadTask.on(
-    "state_changed",
-    onUploadProgress,
-    error => {
-      console.error("Error uploading file", error.message);
-    },
-    // on upload complete
-    () => {
-      // set document in firestore, with img as path
-      collectionRef
-        .doc()
-        .set({
-          name,
-          color,
-          timestamp: getTimestamp(),
-          facepic: imgPath
-        })
-        .then(onComplete)
-        .catch(error => {
-          console.error("Error adding cart:", error.message);
-        });
-    }
-  );
+    // setup listeners for file upload
+    uploadTask.on(
+      "state_changed",
+      onUploadProgress,
+      error => {
+        console.error("Error uploading file", error.message);
+      },
+      // on upload complete
+      () => {
+        // set document in firestore, with img as path
+        collectionRef
+          .doc()
+          .set({
+            name,
+            color,
+            timestamp: getTimestamp(),
+            facepic: imgPath
+          })
+          .then(onComplete)
+          .catch(error => {
+            console.error("Error adding cart:", error.message);
+          });
+      }
+    );
+  } else {
+    collectionRef
+      .doc()
+      .set({
+        name,
+        color,
+        timestamp: getTimestamp()
+      })
+      .then(onComplete)
+      .catch(error => {
+        console.error("Error adding cart:", error.message);
+      });
+  }
 };
