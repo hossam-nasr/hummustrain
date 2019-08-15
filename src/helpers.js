@@ -9,7 +9,9 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 const storage = firebase.storage();
 const collectionRef = db.collection("carts");
-const getQuery = db.collectionGroup("carts").orderBy("timestamp", "asc");
+const getCartsQuery = db.collectionGroup("carts").orderBy("timestamp", "asc");
+const getConstantsQuery = db.doc("/triggers/constants");
+const getTriggersQuery = db.doc("/triggers/triggers");
 const getTimestamp = firebase.firestore.Timestamp.now;
 
 const extractJsonFromResponse = async response =>
@@ -36,7 +38,7 @@ const extractDocData = async doc => {
 };
 
 export const getCarts = callback => {
-  getQuery
+  getCartsQuery
     .get()
     .then(response => {
       extractJsonFromResponse(response).then(callback);
@@ -47,12 +49,33 @@ export const getCarts = callback => {
 };
 
 export const setupCartUpdateListener = callback => {
-  getQuery.onSnapshot(response => {
+  getCartsQuery.onSnapshot(response => {
     extractJsonFromResponse(response)
       .then(callback)
       .catch(error => {
         console.error("Error loading up carts: ", error.message);
       });
+  });
+};
+
+export const getConstants = async () => {
+  try {
+    const docRef = await getConstantsQuery.get();
+    const respJson = await (docRef.exists && docRef.data());
+    return respJson;
+  } catch (error) {
+    console.error("Encountered error getting constants: ", error.message);
+  }
+};
+
+export const setupTriggersUpdateListener = async callback => {
+  getTriggersQuery.onSnapshot(async docRef => {
+    try {
+      const respJson = await (docRef.exists && docRef.data());
+      callback(respJson);
+    } catch (error) {
+      console.log("Error refreshing triggers: ", error.message);
+    }
   });
 };
 

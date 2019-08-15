@@ -17,11 +17,22 @@ import ActionButton from "../../components/ActionButton";
 import Train from "./components/Train";
 import SizePicker from "./components/SizePicker";
 import AddCartForm from "./components/AddCartForm";
-import { addCart, setupCartUpdateListener } from "../../helpers";
-import { loadAudio, defaultSize } from "../../constants";
+import {
+  addCart,
+  setupCartUpdateListener,
+  getConstants,
+  setupTriggersUpdateListener
+} from "../../helpers";
+import { loadAudio, trainLeavingAudio, defaultSize } from "../../constants";
 const moment = require("moment");
 
 const audio = new Audio(loadAudio);
+const leaveAudio = new Audio(trainLeavingAudio);
+
+let constants = null;
+getConstants().then(result => {
+  constants = result;
+});
 
 const isHummusThursday = moment().isoWeekday() === 4;
 
@@ -33,6 +44,8 @@ const MainScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [formUploadProgress, setFormUploadProgress] = useState(0);
   const [uploading, setUploading] = useState(false);
+  const [displayTimer, setDisplayTimer] = useState(false);
+  const [leaving, setLeaving] = useState(false);
 
   const { width, height } = useWindowSize();
 
@@ -74,9 +87,22 @@ const MainScreen = () => {
     });
   };
 
+  // play train leaving audio when it's leaving
+  useEffect(() => {
+    if (leaving) {
+      leaveAudio.play();
+    }
+  }, [leaving]);
+
+  // set up listeners
   useEffect(() => {
     setupCartUpdateListener(carts => {
       setCarts(carts);
+    });
+
+    setupTriggersUpdateListener(({ leaving, displayTimer }) => {
+      setLeaving(leaving);
+      setDisplayTimer(displayTimer);
     });
   }, []);
 
@@ -91,7 +117,7 @@ const MainScreen = () => {
         </Title>
         <SizePicker setCartSize={setCartSize} selectedSize={cartSize} />
       </HeaderContainer>
-      <Train carts={carts} cartSize={cartSize} />
+      <Train carts={carts} cartSize={cartSize} leaving={leaving} />
       <ButtonFiller />
       <ButtonContainer>
         <ActionButton onClick={onButtonPress}>

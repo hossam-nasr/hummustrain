@@ -1,32 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Container, TrainImg } from "./styles";
-import { trainLeavingAudio } from "../../../../constants";
 import { CSSTransition } from "react-transition-group";
-import Button from "react-bootstrap/Button";
 import TrainHeadGif from "../../../../assets/img/train-head.gif";
 import TrainTailGif from "../../../../assets/img/train-tail.gif";
 import Cart from "./components/Cart";
 
-const audio = new Audio(trainLeavingAudio);
-
-const Train = ({ carts, cartSize }) => {
-  const [leaving, setLeaving] = useState(false);
-
-  useEffect(() => {
-    if (leaving) {
-      audio.play();
-    }
-  }, [leaving]);
-
+const Train = ({ carts, cartSize, leaving }) => {
   return (
     <Container>
-      <Button
-        onClick={() => {
-          setLeaving(!leaving);
-        }}
-      >
-        Hi
-      </Button>
       <CSSTransition
         key="train-head"
         classNames="cart"
