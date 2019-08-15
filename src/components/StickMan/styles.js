@@ -26,4 +26,5 @@ export const StickManHeadImg = styled.img`
   border-radius: 50%;
   object-fit: cover;
   overflow: hidden;
+  cursor: ${({ cursorPointer }) => (cursorPointer ? "pointer" : null)};
 `;

@@ -148,7 +148,13 @@ const ImagePicker = ({ onSave }) => {
       </FormColumn>
       <PreviewContainer>
         <>
-          {imgCroppedSrc && <StickMan cartSize="L" facepic={imgCroppedSrc} />}
+          {imgCroppedSrc && (
+            <StickMan
+              cartSize="L"
+              facepic={imgCroppedSrc}
+              onClick={onModifyButtonClick}
+            />
+          )}
           {imgCroppedBlob && (
             <ButtonContainer>
               <Button onClick={onModifyButtonClick} variant="info">
