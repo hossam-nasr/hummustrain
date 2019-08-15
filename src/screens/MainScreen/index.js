@@ -23,7 +23,7 @@ const moment = require("moment");
 
 const audio = new Audio(loadAudio);
 
-const isHummusThursday = moment().isoWeekday() === 3;
+const isHummusThursday = moment().isoWeekday() === 4;
 
 const MainScreen = () => {
   const [carts, setCarts] = useState([]);
