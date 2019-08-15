@@ -17,12 +17,15 @@ const theme = {
     formInputBorderActive: "#B0B0FF",
     progressBarBackground: "#EEEEFF",
     progressBarLeft: "#EEEEFF",
-    progressBarRight: "#000040"
+    progressBarRight: "#000040",
+    overlay: "rgba(0,0,0,0.4)",
+    timerText: "#EEEEEF"
   },
   shadows: {
     title: "0px 0px 40px rgba(0, 0, 0, 0.5)",
     sizePickerText: "0px 2px 7px rgba(255, 255, 255, 1)",
-    colorPickerBox: "0 0 1px 1px rgba(0, 0, 0, 0.3)"
+    colorPickerBox: "0 0 1px 1px rgba(0, 0, 0, 0.3)",
+    timerText: "0px 0px 20px #2c2ca8, 0px 0px 25px #e32020"
   },
   fonts: {
     primary: "Quicksand, Lato, sans-serif",
