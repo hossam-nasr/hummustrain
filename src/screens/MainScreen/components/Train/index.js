@@ -5,27 +5,32 @@ import TrainHeadGif from "../../../../assets/img/train-head.gif";
 import TrainTailGif from "../../../../assets/img/train-tail.gif";
 import Cart from "./components/Cart";
 
-const Train = ({ carts, cartSize, leaving }) => {
+const Train = ({ carts, cartSize, leaving, animationDuration }) => {
   return (
     <Container>
       <CSSTransition
         key="train-head"
         classNames="cart"
-        timeout={10000}
+        timeout={animationDuration}
         in={!leaving}
         unmountOnExit
       >
-        <TrainImg cartSize={cartSize} src={TrainHeadGif} />
+        <TrainImg
+          animationDuration={animationDuration}
+          cartSize={cartSize}
+          src={TrainHeadGif}
+        />
       </CSSTransition>
       {carts.map(({ name, color, timestamp, facepic }) => (
         <CSSTransition
           key={timestamp}
           classNames="cart"
-          timeout={10000}
+          timeout={animationDuration}
           in={!leaving}
           unmountOnExit
         >
           <Cart
+            animationDuration={animationDuration}
             name={name}
             color={color}
             facepic={facepic}
@@ -36,11 +41,15 @@ const Train = ({ carts, cartSize, leaving }) => {
       <CSSTransition
         key="train-tail"
         classNames="cart"
-        timeout={10000}
+        timeout={animationDuration}
         in={!leaving}
         unmountOnExit
       >
-        <TrainImg cartSize={cartSize} src={TrainTailGif} />
+        <TrainImg
+          animationDuration={animationDuration}
+          cartSize={cartSize}
+          src={TrainTailGif}
+        />
       </CSSTransition>
     </Container>
   );

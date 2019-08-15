@@ -117,7 +117,12 @@ const MainScreen = () => {
         </Title>
         <SizePicker setCartSize={setCartSize} selectedSize={cartSize} />
       </HeaderContainer>
-      <Train carts={carts} cartSize={cartSize} leaving={leaving} />
+      <Train
+        carts={carts}
+        cartSize={cartSize}
+        leaving={leaving}
+        animationDuration={constants ? constants.leaveAnimationDuration : 10000}
+      />
       <ButtonFiller />
       <ButtonContainer>
         <ActionButton onClick={onButtonPress}>

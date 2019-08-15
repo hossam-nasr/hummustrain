@@ -13,7 +13,8 @@ export const Container = styled.div`
 
   &.cart-exit-active {
     transform: translateX(-100vw);
-    transition: all 10s ease-in;
+    transition: ${({ animationDuration }) =>
+      `all ${animationDuration}ms ease-in`};
   }
 `;
 

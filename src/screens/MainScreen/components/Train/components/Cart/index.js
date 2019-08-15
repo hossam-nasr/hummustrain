@@ -3,8 +3,8 @@ import { Container, Name, CartContainer, CartBox, WheelImg } from "./styles";
 import StickMan from "../../../../../../components/StickMan";
 import TrainWheelGif from "../../../../../../assets/img/train-wheels.gif";
 
-const Cart = ({ name, color, cartSize, facepic }) => (
-  <Container cartSize={cartSize}>
+const Cart = ({ name, color, cartSize, facepic, animationDuration }) => (
+  <Container cartSize={cartSize} animationDuration={animationDuration}>
     <CartContainer cartSize={cartSize}>
       <StickMan cartSize={cartSize} facepic={facepic} />
       <CartBox cartSize={cartSize} color={color}>
