@@ -24,11 +24,11 @@ export const Title = styled.div`
   margin-left: 10px;
   @media all and (max-width: 800px) {
     font-weight: 400;
-    font-size: 60px;
+    font-size: 70px;
   }
   @media all and (max-width: 500px) {
     font-weight: 400;
-    font-size: 42px;
+    font-size: 55px;
   }
 `;
 
