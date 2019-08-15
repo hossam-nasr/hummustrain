@@ -52,6 +52,7 @@ const MainScreen = () => {
   const [formUploadProgress, setFormUploadProgress] = useState(0);
   const [uploading, setUploading] = useState(false);
   const [displayTimer, setDisplayTimer] = useState(false);
+  const [timerStartTime, setTimerStartTime] = useState(null);
   const [leaving, setLeaving] = useState(false);
   const [doneLeaving, setDoneLeaving] = useState(false);
 
@@ -95,6 +96,14 @@ const MainScreen = () => {
     });
   };
 
+  // set the start date of the timer when we first display it
+  // avoid resetting "Date.now()" on every render and resetting timer on state updates
+  useEffect(() => {
+    if (displayTimer) {
+      setTimerStartTime(Date.now());
+    }
+  }, [displayTimer]);
+
   // play train leaving audio when it's leaving
   useEffect(() => {
     if (leaving) {
@@ -120,6 +129,7 @@ const MainScreen = () => {
       {isHummusThursday && <Confetti width={width} height={height} />}
       {displayTimer && (
         <Timer
+          start={timerStartTime || Date.now()}
           done={doneLeaving}
           duration={
             constants
