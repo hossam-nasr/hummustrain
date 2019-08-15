@@ -1,5 +1,4 @@
 import styled, { keyframes } from "styled-components";
-import { TransitionGroup } from "react-transition-group";
 import bounceIn from "react-animations/lib/bounceIn";
 
 export const Container = styled.div`
