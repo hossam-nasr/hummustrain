@@ -87,6 +87,7 @@ const MainScreen = () => {
 
   const onAddCartFormSubmit = ({ name, color, file }) => {
     setUploading(true);
+    setFormUploadProgress(10);
     addCart({
       name,
       color,
