@@ -7,7 +7,8 @@ import {
   NameInput,
   ProgressBar,
   FooterContainer,
-  ButtonContainer
+  ButtonContainer,
+  InnerContainer
 } from "./styles";
 import ActionButton from "../../../../components/ActionButton";
 import ColorPicker from "./components/ColorPicker";
@@ -39,29 +40,30 @@ const AddCartForm = ({ onSubmit, progress, uploading }) => {
 
   return (
     <Container>
-      <Title>Board the Hummus Train!</Title>
-      <FormColumn>
-        <Label>Name:</Label>
-        <NameInput
-          type="text"
-          placeholder="Type your name here!"
-          value={name}
-          onChange={onNameChange}
-        />
-      </FormColumn>
-      <FormColumn>
-        <Label>Cart color:</Label>
-        <ColorPicker color={color} onChange={onColorChange} />
-      </FormColumn>
-      <ImagePicker onSave={onImageSave} />
-      <FooterContainer>
-        <ProgressBar value={progress} max={100} />
-        <ButtonContainer>
-          <ActionButton onClick={submitForm}>
-            Board the Hummus Train!
-          </ActionButton>
-        </ButtonContainer>
-      </FooterContainer>
+      <InnerContainer>
+        <FormColumn>
+          <Label>Name:</Label>
+          <NameInput
+            type="text"
+            placeholder="Type your name here!"
+            value={name}
+            onChange={onNameChange}
+          />
+        </FormColumn>
+        <FormColumn>
+          <Label>Cart color:</Label>
+          <ColorPicker color={color} onChange={onColorChange} />
+        </FormColumn>
+        <ImagePicker onSave={onImageSave} />
+        <FooterContainer>
+          <ProgressBar value={progress} max={100} />
+          <ButtonContainer>
+            <ActionButton onClick={submitForm}>
+              Board the Hummus Train!
+            </ActionButton>
+          </ButtonContainer>
+        </FooterContainer>
+      </InnerContainer>
     </Container>
   );
 };

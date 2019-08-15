@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { isMobileOnly } from "react-device-detect";
+import { Modal } from "react-bootstrap";
 import Rodal from "rodal";
 import "rodal/lib/rodal.css";
 import {
@@ -6,20 +8,23 @@ import {
   Title,
   ButtonContainer,
   HeaderContainer,
-  ButtonFiller
+  ButtonFiller,
+  ModalTitle
 } from "./styles";
 import ActionButton from "../../components/ActionButton";
 import Train from "./components/Train";
 import SizePicker from "./components/SizePicker";
 import AddCartForm from "./components/AddCartForm";
 import { addCart, setupCartUpdateListener } from "../../helpers";
-import { loadAudio } from "../../constants";
+import { loadAudio, defaultSize } from "../../constants";
 
 const audio = new Audio(loadAudio);
 
 const MainScreen = () => {
   const [carts, setCarts] = useState([]);
-  const [cartSize, setCartSize] = useState("M");
+  const [cartSize, setCartSize] = useState(
+    isMobileOnly ? defaultSize.mobile : defaultSize.regular
+  );
   const [modalVisible, setModalVisible] = useState(false);
   const [formUploadProgress, setFormUploadProgress] = useState(0);
   const [uploading, setUploading] = useState(false);
@@ -81,15 +86,16 @@ const MainScreen = () => {
           Board the Hummus Train!
         </ActionButton>
       </ButtonContainer>
-      <Rodal
-        width={40}
-        height={90}
-        measure="%"
-        closeOnEsc
-        showMask
-        visible={modalVisible}
-        onClose={hideModal}
+      <Modal
+        centered
+        scrollable
+        size="lg"
+        show={modalVisible}
+        onHide={hideModal}
       >
+        <Modal.Header closeButton>
+          <ModalTitle>Board the Hummus Train!</ModalTitle>
+        </Modal.Header>
         {// manually unmount the form to reset state on close
         modalVisible && (
           <AddCartForm
@@ -98,7 +104,7 @@ const MainScreen = () => {
             uploading={uploading}
           />
         )}
-      </Rodal>
+      </Modal>
     </Container>
   );
 };

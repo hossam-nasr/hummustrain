@@ -13,6 +13,7 @@ export const Container = styled.div`
 
 export const FileUploadInput = styled.input`
   padding-right: 10px;
+  width: 80%;
 `;
 
 export const FormColumn = styled.div`
@@ -82,11 +83,15 @@ export const ZoomSliderContainer = styled.div`
 `;
 
 export const PreviewContainer = styled.div`
+  margin-top: 10px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
   width: 100%;
+  @media all and (max-width: 500px) {
+    margin-top: 20px;
+  }
 `;
 
 export const ButtonContainer = styled.div`

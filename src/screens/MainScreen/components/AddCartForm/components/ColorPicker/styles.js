@@ -3,6 +3,7 @@ import { themeGet } from "@styled-system/theme-get";
 
 export const Container = styled.div`
   display: flex;
+  flex-shrink: 0;
 `;
 
 export const ColorCircleContainer = styled.div`

@@ -94,6 +94,11 @@ const ColorPicker = ({ hex, onChange }) => {
         overlay={picker}
         onHide={onPopoverHide}
         rootClose
+        popperConfig={{
+          modifiers: {
+            preventOverflow: { enabled: true, boundariesElement: "viewport" }
+          }
+        }}
       >
         <ColorCircleContainer>
           <ColorCircle color={color} />

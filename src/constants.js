@@ -32,3 +32,8 @@ export const loadAudio = AllAboardTrain;
 export const StickManImg = stickManPng;
 export const StickManBody = stickManBodyPng;
 export const StickManHead = stickManHeadPng;
+
+export const defaultSize = {
+  regular: "M",
+  mobile: "S"
+};
