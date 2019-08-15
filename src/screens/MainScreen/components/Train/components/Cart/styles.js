@@ -10,6 +10,7 @@ export const Container = styled.div`
   margin-top: ${({ cartSize, theme }) => theme.carts.margins[cartSize] + "px"};
   margin-left: ${({ cartSize, theme }) => theme.carts.margins[cartSize] + "px"};
   animation: 0.7s ${keyframes`${bounceIn}`};
+  transition: all 0.7s ease-out;
 
   &.cart-exit-active {
     transform: translateX(-100vw);

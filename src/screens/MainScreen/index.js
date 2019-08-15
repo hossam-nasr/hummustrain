@@ -118,14 +118,17 @@ const MainScreen = () => {
   return (
     <Container>
       {isHummusThursday && <Confetti width={width} height={height} />}
-      <Timer
-        done={doneLeaving}
-        duration={
-          constants
-            ? constants.timerDisplayDuration
-            : defaultTimerDisplayDuration
-        }
-      />
+      {displayTimer && (
+        <Timer
+          done={doneLeaving}
+          duration={
+            constants
+              ? constants.timerDisplayDuration
+              : defaultTimerDisplayDuration
+          }
+        />
+      )}
+
       <HeaderContainer>
         <Title>
           {isHummusThursday
