@@ -1,4 +1,5 @@
 import AllAboardTrain from "./assets/audio/AllAboardTheHummusTrain.mp3";
+import trainWhistle from "./assets/audio/train_whistle.mp3";
 import stickManPng from "./assets/img/stickman-thick.png";
 import stickManBodyPng from "./assets/img/stickman-thick-headless.png";
 import stickManHeadPng from "./assets/img/stickman-thick-head.png";
@@ -29,6 +30,7 @@ export const presetColorOptions = [
 ];
 
 export const loadAudio = AllAboardTrain;
+export const trainLeavingAudio = trainWhistle;
 export const StickManImg = stickManPng;
 export const StickManBody = stickManBodyPng;
 export const StickManHead = stickManHeadPng;
@@ -37,3 +39,5 @@ export const defaultSize = {
   regular: "M",
   mobile: "S"
 };
+export const defaultLeaveAnimationDuration = 10000;
+export const defaultTimerDisplayDuration = 60000;
