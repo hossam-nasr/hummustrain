@@ -9,8 +9,12 @@ export const Container = styled.div`
   justify-content: center;
   margin-top: ${({ cartSize, theme }) => theme.carts.margins[cartSize] + "px"};
   margin-left: ${({ cartSize, theme }) => theme.carts.margins[cartSize] + "px"};
-  transition: all 0.7s ease-out;
   animation: 0.7s ${keyframes`${bounceIn}`};
+
+  &.cart-exit-active {
+    transform: translateX(-100vw);
+    transition: all 10s ease-in;
+  }
 `;
 
 export const CartBox = styled.div`
