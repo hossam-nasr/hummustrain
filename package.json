@@ -20,6 +20,7 @@
     "react-confetti": "^4.0.1",
     "react-countdown-now": "^2.1.1",
     "react-dom": "^16.8.6",
+    "react-dom-confetti": "^0.1.1",
     "react-scripts": "3.0.1",
     "react-use": "^10.5.0",
     "react-transition-group": "^4.2.2",
