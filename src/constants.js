@@ -39,3 +39,5 @@ export const defaultSize = {
   regular: "M",
   mobile: "S"
 };
+export const defaultLeaveAnimationDuration = 10000;
+export const defaultTimerDisplayDuration = 60000;

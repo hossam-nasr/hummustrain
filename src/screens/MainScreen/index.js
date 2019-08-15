@@ -24,7 +24,13 @@ import {
   getConstants,
   setupTriggersUpdateListener
 } from "../../helpers";
-import { loadAudio, trainLeavingAudio, defaultSize } from "../../constants";
+import {
+  loadAudio,
+  trainLeavingAudio,
+  defaultLeaveAnimationDuration,
+  defaultTimerDisplayDuration,
+  defaultSize
+} from "../../constants";
 const moment = require("moment");
 
 const audio = new Audio(loadAudio);
@@ -110,7 +116,14 @@ const MainScreen = () => {
   return (
     <Container>
       {isHummusThursday && <Confetti width={width} height={height} />}
-      <Timer leaving={leaving} />
+      <Timer
+        leaving={leaving}
+        duration={
+          constants
+            ? constants.timerDisplayDuration
+            : defaultTimerDisplayDuration
+        }
+      />
       <HeaderContainer>
         <Title>
           {isHummusThursday
@@ -123,7 +136,11 @@ const MainScreen = () => {
         carts={carts}
         cartSize={cartSize}
         leaving={leaving}
-        animationDuration={constants ? constants.leaveAnimationDuration : 10000}
+        animationDuration={
+          constants
+            ? constants.leaveAnimationDuration
+            : defaultLeaveAnimationDuration
+        }
       />
       <ButtonFiller />
       <ButtonContainer>

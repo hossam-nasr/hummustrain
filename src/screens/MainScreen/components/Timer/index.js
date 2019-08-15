@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Container, Title } from "./styles";
 import Countdown from "react-countdown-now";
 
-const Timer = ({ leaving }) => {
+const Timer = ({ leaving, duration }) => {
   const [isComplete, setIsComplete] = useState(false);
   return (
     <Container>
@@ -17,7 +17,7 @@ const Timer = ({ leaving }) => {
       <Title>
         {!isComplete && (
           <Countdown
-            date={Date.now() + 10000}
+            date={Date.now() + duration}
             onComplete={() => {
               setIsComplete(true);
             }}
