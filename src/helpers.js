@@ -37,15 +37,15 @@ const extractDocData = async doc => {
   return { ...docJson, facepic: imgUrl };
 };
 
-export const getCarts = callback => {
-  getCartsQuery
-    .get()
-    .then(response => {
-      extractJsonFromResponse(response).then(callback);
-    })
-    .catch(error => {
-      console.error("Error retrieving carts from database: ", error);
-    });
+export const getCarts = async () => {
+  try {
+    const response = await getCartsQuery.get();
+    const respJson = await extractJsonFromResponse(response);
+    return respJson;
+  } catch (error) {
+    console.error("Error retrieving carts: ", error.message);
+    return null;
+  }
 };
 
 export const setupCartUpdateListener = callback => {
@@ -84,7 +84,7 @@ export const addCart = ({
   name,
   file,
   onUploadProgress,
-  onComplete
+  onComplete,
 }) => {
   if (file) {
     // create path for file upload
@@ -108,7 +108,7 @@ export const addCart = ({
             name,
             color,
             timestamp: getTimestamp(),
-            facepic: imgPath
+            facepic: imgPath,
           })
           .then(onComplete)
           .catch(error => {
@@ -122,7 +122,7 @@ export const addCart = ({
       .set({
         name,
         color,
-        timestamp: getTimestamp()
+        timestamp: getTimestamp(),
       })
       .then(onComplete)
       .catch(error => {
