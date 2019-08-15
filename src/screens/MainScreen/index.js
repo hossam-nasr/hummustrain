@@ -53,6 +53,7 @@ const MainScreen = () => {
   const [uploading, setUploading] = useState(false);
   const [displayTimer, setDisplayTimer] = useState(false);
   const [leaving, setLeaving] = useState(false);
+  const [doneLeaving, setDoneLeaving] = useState(false);
 
   const { width, height } = useWindowSize();
 
@@ -107,9 +108,10 @@ const MainScreen = () => {
       setCarts(carts);
     });
 
-    setupTriggersUpdateListener(({ leaving, displayTimer }) => {
+    setupTriggersUpdateListener(({ leaving, displayTimer, done }) => {
       setLeaving(leaving);
       setDisplayTimer(displayTimer);
+      setDoneLeaving(done);
     });
   }, []);
 
@@ -117,7 +119,7 @@ const MainScreen = () => {
     <Container>
       {isHummusThursday && <Confetti width={width} height={height} />}
       <Timer
-        leaving={leaving}
+        done={doneLeaving}
         duration={
           constants
             ? constants.timerDisplayDuration
