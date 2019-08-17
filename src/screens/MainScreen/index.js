@@ -17,7 +17,7 @@ import ActionButton from "../../components/ActionButton";
 import Train from "./components/Train";
 import SizePicker from "./components/SizePicker";
 import AddCartForm from "./components/AddCartForm";
-import Timer from "./components/Timer";
+import TimerOverlay from "./components/TimerOverlay";
 import {
   addCart,
   setupCartUpdateListener,
@@ -129,7 +129,7 @@ const MainScreen = () => {
     <Container>
       {isHummusThursday && <Confetti width={width} height={height} />}
       {displayTimer && (
-        <Timer
+        <TimerOverlay
           start={timerStartTime || Date.now()}
           done={doneLeaving}
           duration={
