@@ -5,13 +5,18 @@ import {
   ColorCircle,
   ColorText,
   Arrow,
-  PopoverFooter
+  PopoverFooter,
+  SketchAnimationContainer,
+  BlockAnimationContainer,
+  PopoverContent,
+  AbsoluteContainer
 } from "./styles";
 import { presetColorOptions } from "../../../../../../constants";
 import { CustomPicker, BlockPicker, SketchPicker } from "react-color";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 import Button from "react-bootstrap/Button";
+import { CSSTransition } from "react-transition-group";
 
 const ColorPicker = ({ hex, onChange }) => {
   const [color, setColor] = useState(hex);
@@ -49,6 +54,7 @@ const ColorPicker = ({ hex, onChange }) => {
       color={color}
       onChange={handleChange}
       disableAlpha
+      width={180}
       presetColors={[]}
     />
   );
@@ -58,6 +64,7 @@ const ColorPicker = ({ hex, onChange }) => {
       colors={presetColorOptions}
       triangle="hide"
       color={color}
+      width={180}
       onChange={handleChange}
     />
   );
@@ -66,7 +73,30 @@ const ColorPicker = ({ hex, onChange }) => {
     <Popover id="color-popover">
       <Popover.Title>Pick a color!</Popover.Title>
       <Popover.Content>
-        {isDetailed ? sketchPicker : blockPicker}
+        <PopoverContent>
+          <AbsoluteContainer>
+            <CSSTransition
+              classNames="picker"
+              timeout={500}
+              in={isDetailed}
+              unmountOnExit
+            >
+              <SketchAnimationContainer>
+                {sketchPicker}
+              </SketchAnimationContainer>
+            </CSSTransition>
+          </AbsoluteContainer>
+          <AbsoluteContainer>
+            <CSSTransition
+              classNames="picker"
+              timeout={500}
+              in={!isDetailed}
+              unmountOnExit
+            >
+              <BlockAnimationContainer>{blockPicker}</BlockAnimationContainer>
+            </CSSTransition>
+          </AbsoluteContainer>
+        </PopoverContent>
       </Popover.Content>
       <PopoverFooter>
         {isDetailed ? (
