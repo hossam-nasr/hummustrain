@@ -6,22 +6,20 @@ export const Container = styled.div`
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
 `;
 
 export const Title = styled.div`
   color: ${themeGet("colors.timerText")};
   text-shadow: ${themeGet("shadows.timerText")};
-  font-size: 24px;
+  font-size: 30px;
   font-family: ${themeGet("fonts.primary")};
   font-weight: 600;
   text-align: center;
   margin-bottom: 5px;
-  @media all and (max-width: 800px) {
-    font-weight: 400;
-    font-size: 18px;
-  }
+  letter-spacing: 2px;
+
   @media all and (max-width: 500px) {
-    font-weight: 400;
-    font-size: 16px;
+    font-size: 20px;
   }
 `;
