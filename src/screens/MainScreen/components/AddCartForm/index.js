@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import {
   Container,
-  Title,
   FormColumn,
   Label,
   NameInput,
   ProgressBar,
   FooterContainer,
   ButtonContainer,
-  InnerContainer,
+  InnerContainer
 } from "./styles";
 import ActionButton from "../../../../components/ActionButton";
 import ColorPicker from "./components/ColorPicker";
