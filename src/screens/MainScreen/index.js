@@ -174,14 +174,11 @@ const MainScreen = () => {
         <Modal.Header closeButton>
           <ModalTitle>Board the Hummus Train!</ModalTitle>
         </Modal.Header>
-        {// manually unmount the form to reset state on close
-        modalVisible && (
-          <AddCartForm
-            onSubmit={onAddCartFormSubmit}
-            progress={formUploadProgress}
-            uploading={uploading}
-          />
-        )}
+        <AddCartForm
+          onSubmit={onAddCartFormSubmit}
+          progress={formUploadProgress}
+          uploading={uploading}
+        />
       </Modal>
     </Container>
   );
