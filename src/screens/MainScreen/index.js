@@ -29,7 +29,8 @@ import {
   trainLeavingAudio,
   defaultLeaveAnimationDuration,
   defaultTimerDisplayDuration,
-  defaultSize
+  defaultSize,
+  defaultNextTrainTime
 } from "../../constants";
 const moment = require("moment");
 
@@ -53,6 +54,7 @@ const MainScreen = () => {
   const [uploading, setUploading] = useState(false);
   const [displayTimer, setDisplayTimer] = useState(false);
   const [timerStartTime, setTimerStartTime] = useState(null);
+  const [nextTrainTime, setNextTrainTime] = useState(defaultNextTrainTime);
   const [leaving, setLeaving] = useState(false);
   const [doneLeaving, setDoneLeaving] = useState(false);
 
@@ -118,11 +120,14 @@ const MainScreen = () => {
       setCarts(carts);
     });
 
-    setupTriggersUpdateListener(({ leaving, displayTimer, done }) => {
-      setLeaving(leaving);
-      setDisplayTimer(displayTimer);
-      setDoneLeaving(done);
-    });
+    setupTriggersUpdateListener(
+      ({ leaving, displayTimer, done, nextTrain }) => {
+        setLeaving(leaving);
+        setDisplayTimer(displayTimer);
+        setDoneLeaving(done);
+        setNextTrainTime(nextTrain);
+      }
+    );
   }, []);
 
   return (
@@ -146,7 +151,7 @@ const MainScreen = () => {
             : "ALL ABOARD THE HUMMUS TRAIN"}
         </Title>
         <SizePicker setCartSize={setCartSize} selectedSize={cartSize} />
-        {!displayTimer && <NextTrainTimer />}
+        {!displayTimer && <NextTrainTimer time={nextTrainTime} />}
       </HeaderContainer>
       <Train
         carts={carts}
