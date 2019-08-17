@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { isMobileOnly } from "react-device-detect";
 import { Modal } from "react-bootstrap";
-import Rodal from "rodal";
 import "rodal/lib/rodal.css";
 import Confetti from "react-confetti";
 import useWindowSize from "react-use/lib/useWindowSize";
@@ -18,6 +17,7 @@ import Train from "./components/Train";
 import SizePicker from "./components/SizePicker";
 import AddCartForm from "./components/AddCartForm";
 import TimerOverlay from "./components/TimerOverlay";
+import NextTrainTimer from "./components/NextTrainTimer";
 import {
   addCart,
   setupCartUpdateListener,
@@ -139,7 +139,6 @@ const MainScreen = () => {
           }
         />
       )}
-
       <HeaderContainer>
         <Title>
           {isHummusThursday
@@ -147,6 +146,7 @@ const MainScreen = () => {
             : "ALL ABOARD THE HUMMUS TRAIN"}
         </Title>
         <SizePicker setCartSize={setCartSize} selectedSize={cartSize} />
+        {!displayTimer && <NextTrainTimer />}
       </HeaderContainer>
       <Train
         carts={carts}
