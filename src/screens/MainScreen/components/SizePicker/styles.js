@@ -7,7 +7,7 @@ export const Container = styled.div`
   align-self: ${({ isMobile }) => (isMobile ? "center" : "flex-end")};
   margin-right: 50px;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   margin-top: 10px;
 `;
 
@@ -17,6 +17,9 @@ export const Label = styled.div`
   text-shadow: ${themeGet("shadows.sizePickerText")};
   font-size: 22px;
   margin-right: 10px;
+  @media all and (max-width: 500px) {
+    font-size: 20px;
+  }
 `;
 
 export const SizeButton = styled.div`
