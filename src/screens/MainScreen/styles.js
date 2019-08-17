@@ -62,3 +62,11 @@ export const ModalTitle = styled.div`
     font-size: 24px;
   }
 `;
+
+export const Credits = styled.div`
+  margin-top: 20px;
+  font-family: ${themeGet("fonts.primary")};
+  color: ${themeGet("colors.primary")};
+  font-size: 11px;
+  text-align: center;
+`;
