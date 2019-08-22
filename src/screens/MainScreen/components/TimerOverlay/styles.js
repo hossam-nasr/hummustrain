@@ -14,7 +14,7 @@ export const Container = styled.div`
   z-index: 3;
 `;
 
-export const Title = styled.div`
+export const Text = styled.div`
   color: ${themeGet("colors.timerText")};
   text-shadow: ${themeGet("shadows.timerText")};
   font-size: 80px;

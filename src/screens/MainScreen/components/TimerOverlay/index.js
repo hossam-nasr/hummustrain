@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Title } from "./styles";
+import { Container, Text } from "./styles";
 import Countdown from "react-countdown-now";
 import Confetti from "react-dom-confetti";
 
@@ -17,7 +17,7 @@ const TimerOverlay = ({ done, duration, start }) => {
   }
   return (
     <Container>
-      <Title>{title}</Title>
+      <Text>{title}</Text>
       <Confetti
         config={{
           angle: 90,
@@ -26,7 +26,7 @@ const TimerOverlay = ({ done, duration, start }) => {
         }}
         active={done}
       />
-      <Title>
+      <Text>
         {!isComplete && (
           <Countdown
             date={start + duration}
@@ -35,7 +35,7 @@ const TimerOverlay = ({ done, duration, start }) => {
             }}
           />
         )}
-      </Title>
+      </Text>
     </Container>
   );
 };
