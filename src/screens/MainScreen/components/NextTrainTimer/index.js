@@ -1,14 +1,14 @@
 import React from "react";
-import { Container, Title } from "./styles";
+import { Container, Text } from "./styles";
 import Countdown from "react-countdown-now";
 
 const NextTrainTimer = ({ time }) => {
   return (
     <Container>
-      <Title>The next Hummus Train leaves in</Title>
-      <Title>
+      <Text>The next Hummus Train leaves in</Text>
+      <Text>
         <Countdown date={time} />
-      </Title>
+      </Text>
     </Container>
   );
 };

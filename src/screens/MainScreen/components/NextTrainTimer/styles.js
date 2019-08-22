@@ -9,7 +9,7 @@ export const Container = styled.div`
   margin-top: 20px;
 `;
 
-export const Title = styled.div`
+export const Text = styled.div`
   color: ${themeGet("colors.timerText")};
   text-shadow: ${themeGet("shadows.timerText")};
   font-size: 30px;
