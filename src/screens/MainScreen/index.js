@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { isMobileOnly } from "react-device-detect";
 import { Modal } from "react-bootstrap";
-import Rodal from "rodal";
 import "rodal/lib/rodal.css";
 import Confetti from "react-confetti";
 import useWindowSize from "react-use/lib/useWindowSize";
@@ -17,7 +16,8 @@ import ActionButton from "../../components/ActionButton";
 import Train from "./components/Train";
 import SizePicker from "./components/SizePicker";
 import AddCartForm from "./components/AddCartForm";
-import Timer from "./components/Timer";
+import TimerOverlay from "./components/TimerOverlay";
+import NextTrainTimer from "./components/NextTrainTimer";
 import {
   addCart,
   setupCartUpdateListener,
@@ -29,7 +29,8 @@ import {
   trainLeavingAudio,
   defaultLeaveAnimationDuration,
   defaultTimerDisplayDuration,
-  defaultSize
+  defaultSize,
+  defaultNextTrainTime
 } from "../../constants";
 const moment = require("moment");
 
@@ -53,6 +54,7 @@ const MainScreen = () => {
   const [uploading, setUploading] = useState(false);
   const [displayTimer, setDisplayTimer] = useState(false);
   const [timerStartTime, setTimerStartTime] = useState(null);
+  const [nextTrainTime, setNextTrainTime] = useState(defaultNextTrainTime);
   const [leaving, setLeaving] = useState(false);
   const [doneLeaving, setDoneLeaving] = useState(false);
 
@@ -118,18 +120,21 @@ const MainScreen = () => {
       setCarts(carts);
     });
 
-    setupTriggersUpdateListener(({ leaving, displayTimer, done }) => {
-      setLeaving(leaving);
-      setDisplayTimer(displayTimer);
-      setDoneLeaving(done);
-    });
+    setupTriggersUpdateListener(
+      ({ leaving, displayTimer, done, nextTrain }) => {
+        setLeaving(leaving);
+        setDisplayTimer(displayTimer);
+        setDoneLeaving(done);
+        setNextTrainTime(nextTrain);
+      }
+    );
   }, []);
 
   return (
     <Container>
       {isHummusThursday && <Confetti width={width} height={height} />}
       {displayTimer && (
-        <Timer
+        <TimerOverlay
           start={timerStartTime || Date.now()}
           done={doneLeaving}
           duration={
@@ -139,7 +144,6 @@ const MainScreen = () => {
           }
         />
       )}
-
       <HeaderContainer>
         <Title>
           {isHummusThursday
@@ -147,6 +151,7 @@ const MainScreen = () => {
             : "ALL ABOARD THE HUMMUS TRAIN"}
         </Title>
         <SizePicker setCartSize={setCartSize} selectedSize={cartSize} />
+        {!displayTimer && <NextTrainTimer time={nextTrainTime} />}
       </HeaderContainer>
       <Train
         carts={carts}

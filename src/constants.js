@@ -41,3 +41,5 @@ export const defaultSize = {
 };
 export const defaultLeaveAnimationDuration = 10000;
 export const defaultTimerDisplayDuration = 60000;
+// a day from now
+export const defaultNextTrainTime = Date.now() + 24 * 60 * 60 * 1000;

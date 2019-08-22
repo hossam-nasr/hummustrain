@@ -28,7 +28,7 @@ export const Title = styled.div`
   }
   @media all and (max-width: 500px) {
     font-weight: 400;
-    font-size: 55px;
+    font-size: 43px;
   }
 `;
 
