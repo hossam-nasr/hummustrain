@@ -1,4 +1,8 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+import slideInRight from "react-animations/lib/slideInRight";
+import slideInLeft from "react-animations/lib/slideInLeft";
+import slideOutRight from "react-animations/lib/slideOutRight";
+import slideOutLeft from "react-animations/lib/slideOutLeft";
 import { themeGet } from "@styled-system/theme-get";
 
 export const Container = styled.div`
@@ -54,4 +58,53 @@ export const PopoverFooter = styled.div`
   align-items: center;
   padding: 10px;
   padding-top: 5px;
+`;
+
+const AnimationContainer = styled.div`
+  &.picker-enter {
+    opacity: 0;
+  }
+  &.picker-enter-active {
+    opacity: 1;
+    transition: opacity 500ms;
+  }
+  &.picker-exit {
+    opacity: 1;
+  }
+  &.picker-exit-active {
+    opacity: 0;
+    transition: opacity 500ms;
+  }
+`;
+
+export const SketchAnimationContainer = styled(AnimationContainer)`
+  &.picker-enter {
+    animation: 0.5s ${keyframes`${slideInRight}`};
+  }
+  &.picker-exit {
+    animation: 0.5s ${keyframes`${slideOutRight}`};
+  }
+`;
+
+export const BlockAnimationContainer = styled(AnimationContainer)`
+  &.picker-enter {
+    animation: 0.5s ${keyframes`${slideInLeft}`};
+  }
+  &.picker-exit {
+    animation: 0.5s ${keyframes`${slideOutLeft}`};
+  }
+`;
+
+export const PopoverContent = styled.div`
+  width: 180px;
+  height: 220px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+`;
+
+export const AbsoluteContainer = styled.div`
+  position: absolute;
+  overflow: hidden;
 `;
