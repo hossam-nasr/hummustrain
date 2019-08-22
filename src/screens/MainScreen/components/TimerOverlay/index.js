@@ -5,19 +5,19 @@ import Confetti from "react-dom-confetti";
 
 const TimerOverlay = ({ done, duration, start }) => {
   const [isComplete, setIsComplete] = useState(false);
-  let title = "";
-  if (isComplete) {
-    if (done) {
-      title = "The Hummus Train has left!";
-    } else {
-      title = "The Hummus Train is leaving...";
+
+  const getTitle = () => {
+    if (isComplete) {
+      if (done) {
+        return "The Hummus Train has left!";
+      }
+      return "The Hummus Train is leaving...";
     }
-  } else {
-    title = "The Hummus Train is about to leave!";
-  }
+    return "The Hummus Train is about to leave!";
+  };
   return (
     <Container>
-      <Text>{title}</Text>
+      <Text>{getTitle()}</Text>
       <Confetti
         config={{
           angle: 90,
